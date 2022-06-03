@@ -5,8 +5,10 @@ import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider, Hydrate } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { ToastContainer } from 'react-toastify';
 import { UserContextProvider } from '../libs/context/UserContext';
 import * as ga from '../libs/utils/ga';
+import GlobalStyle from '../styles';
 
 function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(new QueryClient());
@@ -28,6 +30,32 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta charSet="utf-8" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/apple-icon-152x152.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="apple-touch-icon" href="/assets/logo192.png" />
         <title>D&K Dreams Blog - Welcome</title>
       </Head>
       <Script
@@ -48,6 +76,9 @@ function App({ Component, pageProps }: AppProps) {
           `,
         }}
       />
+
+      <GlobalStyle />
+
       <UserContextProvider>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
@@ -56,6 +87,8 @@ function App({ Component, pageProps }: AppProps) {
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </UserContextProvider>
+
+      <ToastContainer position="bottom-center" draggable={false} />
     </>
   );
 }
