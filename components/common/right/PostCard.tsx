@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { media } from '../../../styles';
 
 interface Props {
   title?: string;
@@ -47,10 +48,9 @@ const Container = styled.div`
   padding: 5px;
   padding-left: 10px;
   margin-bottom: 1rem;
-  cursor: pointer;
-  transition: 0.2s all;
+  transition: 0.15s background-color;
   &:hover {
-    background: #b8ffeb;
+    background: #e7fcf6;
   }
 `;
 
@@ -66,6 +66,16 @@ const Title = styled.h1`
   margin-top: 0.6rem;
   padding: 0;
   line-height: 2rem;
+  cursor: pointer;
+  transition: 0.12s color;
+
+  &:hover {
+    color: #21e1a7;
+  }
+
+  ${media.large} {
+    font-size: 24px;
+  }
 `;
 
 const DateString = styled.span`

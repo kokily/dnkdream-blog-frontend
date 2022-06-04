@@ -8,23 +8,26 @@ function LeftSide() {
 
   return (
     <Container>
-      <Title>Category</Title>
+      <div>
+        <Title>카테고리</Title>
 
-      <CategoryItem>Development</CategoryItem>
-      <CategoryItem>Travel</CategoryItem>
-      <CategoryItem>ETC</CategoryItem>
+        <CategoryItem>Development</CategoryItem>
+        <CategoryItem>Travel</CategoryItem>
+        <CategoryItem>ETC</CategoryItem>
+        {categories &&
+          categories.length > 0 &&
+          categories.map((category) => (
+            <ActiveLink
+              key={category}
+              href={`/${category}`}
+              activeClassName="active"
+            >
+              <CategoryItem>{category}</CategoryItem>
+            </ActiveLink>
+          ))}
+      </div>
 
-      {categories &&
-        categories.length > 0 &&
-        categories.map((category) => (
-          <ActiveLink
-            key={category}
-            href={`/${category}`}
-            activeClassName="active"
-          >
-            <CategoryItem>{category}</CategoryItem>
-          </ActiveLink>
-        ))}
+      <CopyRight>D&amp;K Dream</CopyRight>
     </Container>
   );
 }
@@ -32,8 +35,10 @@ function LeftSide() {
 // Styles
 const Container = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const Title = styled.h2`
@@ -56,6 +61,13 @@ const CategoryItem = styled.div`
   &.active {
     color: #0c0c0c;
   }
+`;
+
+const CopyRight = styled.div`
+  height: 120px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b7e94;
 `;
 
 export default LeftSide;

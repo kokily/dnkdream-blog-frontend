@@ -35,16 +35,13 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const LeftContainer = styled.div`
+const LeftContainer = styled.aside`
   flex: 1;
-  height: 100vh;
+  height: calc(100vh - 56px);
 
   ${media.small} {
     display: none;
   }
-
-  // Temp Color
-  background: #c69696;
 `;
 
 const Main = styled.main`
@@ -52,9 +49,9 @@ const Main = styled.main`
   height: 100%;
 `;
 
-const RightContainer = styled.div`
+const RightContainer = styled.aside`
   flex: 1;
-  height: 100vh;
+  height: calc(100vh - 56px);
 
   ${media.medium} {
     display: none;
