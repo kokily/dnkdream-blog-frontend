@@ -13,7 +13,7 @@ function PageTemplate({ children }: Props) {
   return (
     <>
       <Header />
-      
+
       <Container>
         <LeftContainer>
           <LeftSide />
@@ -36,12 +36,8 @@ const Container = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  flex: 0.5;
+  flex: 1;
   height: 100vh;
-
-  ${media.medium} {
-    flex: 1;
-  }
 
   ${media.small} {
     display: none;

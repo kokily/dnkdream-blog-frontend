@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { shadow } from '../../styles';
+import { media, shadow } from '../../styles';
 import useHeader from './hooks/useHeader';
 import MenuButton from './header/MenuButton';
 import MenuList from './header/MenuList';
@@ -44,6 +44,11 @@ const Contents = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   position: relative;
+
+  ${media.medium} {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `;
 
 const Logo = styled.a`
