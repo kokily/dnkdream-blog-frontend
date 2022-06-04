@@ -7,10 +7,10 @@ function RightSide() {
     <Container>
       <Title>다른 글</Title>
 
-      <PostTitle>이전 글</PostTitle>
+      <PostTitle className="prev">이전 글</PostTitle>
       <PostCard />
 
-      <PostTitle>다음 글</PostTitle>
+      <PostTitle className="next">다음 글</PostTitle>
       <PostCard />
     </Container>
   );
@@ -21,6 +21,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 `;
 
 const Title = styled.h2`
@@ -29,6 +31,14 @@ const Title = styled.h2`
 
 const PostTitle = styled.h3`
   margin-top: 2rem;
+
+  &.prev {
+    color: #c4643d;
+  }
+
+  &.next {
+    color: #1942ca;
+  }
 `;
 
 export default RightSide;

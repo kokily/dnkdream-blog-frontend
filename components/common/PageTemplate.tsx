@@ -42,6 +42,9 @@ const LeftContainer = styled.div`
   ${media.small} {
     display: none;
   }
+
+  // Temp Color
+  background: #c69696;
 `;
 
 const Main = styled.main`
