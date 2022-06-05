@@ -20,7 +20,11 @@ function Header() {
 
         <div ref={ref}>
           <MenuButton onClick={toggleMenu} />
-          <MenuList onClose={onOutsideClick} visible={menu} />
+          <MenuList
+            onClose={onOutsideClick}
+            visible={menu}
+            toggleMenu={toggleMenu}
+          />
         </div>
       </Contents>
     </Container>

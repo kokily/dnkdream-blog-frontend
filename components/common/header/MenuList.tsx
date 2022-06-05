@@ -1,17 +1,33 @@
 import type { MouseEvent } from 'react';
 import React from 'react';
+import { useRouter } from 'next/router';
+import { useMutation, useQueryClient } from 'react-query';
 import styled, { css } from 'styled-components';
+import { logoutAPI } from '../../../libs/api/auth';
 import { useUserState } from '../../../libs/context/UserContext';
 import { shadow } from '../../../styles';
 import MenuItem from './MenuItem';
+import { toast } from 'react-toastify';
 
 interface Props {
   onClose: (e: MouseEvent) => void;
   visible: boolean;
+  toggleMenu: () => void;
 }
 
-function MenuList({ onClose, visible }: Props) {
-  const [user] = useUserState();
+function MenuList({ onClose, visible, toggleMenu }: Props) {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  const [user, setUser] = useUserState();
+  const { mutate: logout } = useMutation(logoutAPI, {
+    onSuccess: () => {
+      setUser(null);
+      queryClient.invalidateQueries('user');
+      toggleMenu();
+      toast.success('로그아웃!');
+      router.push('/');
+    },
+  });
 
   return (
     <Container visible={visible} onClick={onClose}>
@@ -26,9 +42,7 @@ function MenuList({ onClose, visible }: Props) {
 
             {user && user.admin && <MenuItem href="/write">글 작성</MenuItem>}
             {user ? (
-              <MenuItem onClick={() => console.log('로그아웃')}>
-                로그아웃
-              </MenuItem>
+              <MenuItem onClick={() => logout()}>로그아웃</MenuItem>
             ) : (
               <MenuItem href="/admin">관리자 로그인</MenuItem>
             )}

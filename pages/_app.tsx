@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import { UserContextProvider } from '../libs/context/UserContext';
 import * as ga from '../libs/utils/ga';
 import GlobalStyle from '../styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(new QueryClient());
