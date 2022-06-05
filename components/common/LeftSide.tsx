@@ -37,8 +37,11 @@ const Container = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  padding-left: 14px;
+  position: fixed;
+  top: 56px;
 `;
 
 const Title = styled.h2`

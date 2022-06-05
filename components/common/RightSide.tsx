@@ -23,6 +23,8 @@ const Container = styled.div`
   align-items: center;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  position: fixed;
+  top: 56px;
 `;
 
 const Title = styled.h2`

@@ -33,6 +33,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   background: #353535;
+  position: fixed;
   ${shadow(1)}
 `;
 
