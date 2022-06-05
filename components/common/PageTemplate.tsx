@@ -60,11 +60,12 @@ const Main = styled.main`
   height: 100%;
 
   ${media.medium} {
-    margin-right: 0;
+    margin-right: 10px;
   }
 
   ${media.small} {
-    margin-left: 0;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `;
 

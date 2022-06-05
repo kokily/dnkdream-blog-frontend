@@ -42,6 +42,19 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: sans-serif;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #4d4d4d;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #353535;
+    }
   }
   
   *, *:before, *:after {

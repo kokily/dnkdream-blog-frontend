@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useUserState } from '../../../libs/context/UserContext';
 import { shadow } from '../../../styles';
 import MenuItem from './MenuItem';
 
@@ -10,6 +11,8 @@ interface Props {
 }
 
 function MenuList({ onClose, visible }: Props) {
+  const [user] = useUserState();
+
   return (
     <Container visible={visible} onClick={onClose}>
       <Wrapper>
@@ -19,7 +22,9 @@ function MenuList({ onClose, visible }: Props) {
 
             <Split />
 
-            <MenuItem href="/category">카테고리</MenuItem>
+            <MenuItem href="/about">소개글</MenuItem>
+
+            {user && user.admin && <MenuItem href="/write">글 작성</MenuItem>}
           </>
         )}
       </Wrapper>
