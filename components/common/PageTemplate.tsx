@@ -11,7 +11,7 @@ interface Props {
 
 function PageTemplate({ children }: Props) {
   return (
-    <>
+    <div style={{ height: '100%' }}>
       <Header />
 
       <Container>
@@ -27,7 +27,7 @@ function PageTemplate({ children }: Props) {
           </RightContainer>
         </Contents>
       </Container>
-    </>
+    </div>
   );
 }
 
@@ -57,6 +57,7 @@ const LeftContainer = styled.aside`
 
 const Main = styled.main`
   flex: 3;
+  height: 100%;
 
   ${media.medium} {
     margin-right: 0;

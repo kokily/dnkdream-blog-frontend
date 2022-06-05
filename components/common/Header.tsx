@@ -35,6 +35,7 @@ const Container = styled.div`
   background: #353535;
   position: fixed;
   ${shadow(1)}
+  z-index: 9999;
 `;
 
 const Contents = styled.div`

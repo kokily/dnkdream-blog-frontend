@@ -36,9 +36,9 @@ function AllPosts({}: Props) {
 // Styles
 const Container = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
   margin-top: 1rem;
 `;
 
