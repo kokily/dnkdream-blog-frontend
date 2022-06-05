@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface Props {}
+interface Props {
+  onReadPost: (id: string) => void;
+}
 
-function PostCard({}: Props) {
+function PostCard({ onReadPost }: Props) {
   return (
-    <Container>
+    <Container onClick={() => onReadPost('1')}>
       <Thumbnail src="/assets/images/thumbnail1.png" alt="Thumbnail" />
 
       <h2>포스트 제목</h2>

@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useRef } from 'react';
+import { useRouter } from 'next/router';
 import { useInfiniteQuery } from 'react-query';
 import { listPostsAPI } from '../../../libs/api/posts';
 
 function useAllPosts() {
+  const router = useRouter();
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>();
   const { data, isFetchingNextPage, fetchNextPage } = useInfiniteQuery(
@@ -22,6 +24,10 @@ function useAllPosts() {
 
     return ([] as PostType[]).concat(...data.pages);
   }, [data]);
+
+  const onReadPost = (id: string) => {
+    router.push(`/post/${id}`);
+  };
 
   const intersectionObserver = (
     entires: IntersectionObserverEntry[],
@@ -50,6 +56,7 @@ function useAllPosts() {
   return {
     posts,
     loading: isFetchingNextPage,
+    onReadPost,
   };
 }
 

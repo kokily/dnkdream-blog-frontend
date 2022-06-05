@@ -25,6 +25,13 @@ function MenuList({ onClose, visible }: Props) {
             <MenuItem href="/about">소개글</MenuItem>
 
             {user && user.admin && <MenuItem href="/write">글 작성</MenuItem>}
+            {user ? (
+              <MenuItem onClick={() => console.log('로그아웃')}>
+                로그아웃
+              </MenuItem>
+            ) : (
+              <MenuItem href="/admin">관리자 로그인</MenuItem>
+            )}
           </>
         )}
       </Wrapper>
