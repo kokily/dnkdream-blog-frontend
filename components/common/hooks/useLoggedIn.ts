@@ -7,8 +7,10 @@ import { useUserState } from '../../../libs/context/UserContext';
 function useLoggedIn(isAdmin?: boolean) {
   const router = useRouter();
   const [user, setUser] = useUserState();
-  const {} = useQuery('user', () => checkAPI(), {
-    onSuccess: (data) => setUser(data),
+  useQuery('user', () => checkAPI(), {
+    onSuccess: (data) => {
+      setUser(data);
+    },
     onError: () => {
       setUser(null);
       router.push('/');

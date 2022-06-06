@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import type { ChangeEvent, MouseEvent } from 'react';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from 'react-query';
@@ -8,6 +8,7 @@ import { useUserState } from '../../../libs/context/UserContext';
 import { shadow } from '../../../styles';
 import MenuItem from './MenuItem';
 import { toast } from 'react-toastify';
+import useWrite from '../../write/hooks/useWrite';
 
 interface Props {
   onClose: (e: MouseEvent) => void;
@@ -28,6 +29,8 @@ function MenuList({ onClose, visible, toggleMenu }: Props) {
       router.push('/');
     },
   });
+  const url = router.pathname.substring(1, 6);
+  const { onWrite, onUploadImage } = useWrite();
 
   return (
     <Container visible={visible} onClick={onClose}>
@@ -40,11 +43,27 @@ function MenuList({ onClose, visible, toggleMenu }: Props) {
 
             <MenuItem href="/about">소개글</MenuItem>
 
-            {user && user.admin && <MenuItem href="/write">글 작성</MenuItem>}
+            {user && user.admin && url !== 'write' && (
+              <MenuItem href="/write">글 작성</MenuItem>
+            )}
             {user ? (
               <MenuItem onClick={() => logout()}>로그아웃</MenuItem>
             ) : (
               <MenuItem href="/admin">관리자 로그인</MenuItem>
+            )}
+
+            {user && user.admin && url === 'write' && (
+              <>
+                <Split />
+
+                <MenuItem onClick={() => onUploadImage(true)}>
+                  썸네일 업로드
+                </MenuItem>
+                <MenuItem onClick={() => onUploadImage(false)}>
+                  이미지 업로드
+                </MenuItem>
+                <MenuItem onClick={onWrite}>저장하기</MenuItem>
+              </>
             )}
           </>
         )}

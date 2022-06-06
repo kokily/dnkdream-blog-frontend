@@ -5,8 +5,10 @@ import { media, shadow } from '../../styles';
 import useHeader from './hooks/useHeader';
 import MenuButton from './header/MenuButton';
 import MenuList from './header/MenuList';
+import useLoggedIn from './hooks/useLoggedIn';
 
 function Header() {
+  useLoggedIn();
   const { ref, menu, toggleMenu, onOutsideClick } = useHeader();
 
   return (

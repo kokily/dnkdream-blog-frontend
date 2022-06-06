@@ -48,7 +48,18 @@ export async function removePostAPI(id: string) {
 }
 
 // Update Post API
-export async function updatePostAPI(id: string, payload: AddPostPayload) {
-  const response = await client.patch<PostType>(`/posts/${id}`, payload);
+export type UpdatePostPayload = {
+  id: string;
+} & AddPostPayload;
+
+export async function updatePostAPI(payload: UpdatePostPayload) {
+  const { id, category, title, body, thumbnail, tags } = payload;
+  const response = await client.patch<PostType>(`/posts/${id}`, {
+    category,
+    title,
+    body,
+    thumbnail,
+    tags,
+  });
   return response.data;
 }

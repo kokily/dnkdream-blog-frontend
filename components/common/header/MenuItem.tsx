@@ -5,7 +5,7 @@ import styled from 'styled-components';
 interface Props {
   children: React.ReactNode;
   href?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 function MenuItem({ children, href, onClick }: Props) {
