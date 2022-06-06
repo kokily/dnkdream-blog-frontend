@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import { checkAPI } from '../../../libs/api/auth';
-import { useUserState } from '../../../libs/context/UserContext';
+import { checkAPI } from '../../api/auth';
+import { useUserState } from '../../context/UserContext';
 
 function useLoggedIn(isAdmin?: boolean) {
   const router = useRouter();

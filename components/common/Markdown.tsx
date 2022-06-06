@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import marked from 'marked';
+import { marked } from 'marked';
 import styled from 'styled-components';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-okaidia.css';
@@ -22,8 +22,7 @@ function Markdown({ markdown }: Props) {
     }
 
     setHtml(
-      // @ts-ignore
-      marked(markdown, {
+      marked(html, {
         breaks: true,
       })
     );

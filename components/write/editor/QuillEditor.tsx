@@ -7,12 +7,11 @@ import { imageUpload } from '../../../libs/api/upload';
 import { toast } from 'react-toastify';
 
 interface Props {
-  isEdit: boolean;
   QuillChange: (text: string) => void;
   body: string;
 }
 
-function QuillEditor({ isEdit, QuillChange, body }: Props) {
+function QuillEditor({ QuillChange, body }: Props) {
   const Quill = typeof window === 'object' ? require('quill') : () => false;
   const quillElement = useRef(null);
   const quillInstance = useRef(null);

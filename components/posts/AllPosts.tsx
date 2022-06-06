@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import PostCard from './common/PostCard';
-import useAllPosts from './hooks/useAllPosts';
 
-interface Props {}
+interface Props {
+  posts: PostType[];
+  onReadPost: (id: string) => void;
+}
 
-function AllPosts({}: Props) {
-  const { posts, status, onReadPost } = useAllPosts();
-
-  if (status === 'loading') return <div>Loading...</div>;
-
-  return <Container>{posts && JSON.stringify(console.log(posts))}</Container>;
+function AllPosts({ posts, onReadPost }: Props) {
+  return (
+    <Container>
+      {posts.map((post) => (
+        <PostCard key={post.id} post={post} onReadPost={onReadPost} />
+      ))}
+    </Container>
+  );
 }
 
 // Styles

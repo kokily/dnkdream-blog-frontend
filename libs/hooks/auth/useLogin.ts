@@ -2,8 +2,8 @@ import type { ChangeEvent, KeyboardEvent } from 'react';
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
-import { loginAPI } from '../../../libs/api/auth';
-import { useUserState } from '../../../libs/context/UserContext';
+import { loginAPI } from '../../api/auth';
+import { useUserState } from '../../context/UserContext';
 import { toast } from 'react-toastify';
 
 function useLogin() {

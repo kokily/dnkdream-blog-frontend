@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import useLogin from './hooks/useLogin';
+import useLogin from '../../libs/hooks/auth/useLogin';
 import InputGroup from './InputGroup';
 
 function LoginAdmin() {

@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Input from '../auth/Input';
 import InputGroup from '../auth/InputGroup';
 import AddTagBox from './editor/AddTagBox';
 import EditorFooter from './editor/EditorFooter';
 import EditorTitle from './editor/EditorTitle';
 import QuillEditor from './editor/QuillEditor';
 import ThumbnailBox from './editor/ThumbnailBox';
-import useTags from './hooks/useTag';
-import useWrite from './hooks/useWrite';
+import useTags from '../../libs/hooks/write/useTag';
+import useWrite from '../../libs/hooks/write/useWrite';
 
 interface Props {
   isEdit: boolean;
@@ -66,7 +65,7 @@ function Write({ isEdit }: Props) {
 
           <ThumbnailBox thumbnail={thumbnail} onUploadImage={onUploadImage} />
 
-          <QuillEditor isEdit={isEdit} QuillChange={onChangeBody} body={body} />
+          <QuillEditor QuillChange={onChangeBody} body={body} />
         </EditorContents>
 
         <EditorFooter

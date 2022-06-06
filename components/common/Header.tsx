@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { media, shadow } from '../../styles';
-import useHeader from './hooks/useHeader';
+import useHeader from '../../libs/hooks/common/useHeader';
 import MenuButton from './header/MenuButton';
 import MenuList from './header/MenuList';
-import useLoggedIn from './hooks/useLoggedIn';
+import useLoggedIn from '../../libs/hooks/auth/useLoggedIn';
 
 function Header() {
   useLoggedIn();

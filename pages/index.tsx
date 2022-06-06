@@ -1,13 +1,14 @@
-import type { GetServerSideProps, NextPage } from 'next';
-import { dehydrate, QueryClient } from 'react-query';
+import type { NextPage } from 'next';
 import PageTemplate from '../components/common/PageTemplate';
 import AllPosts from '../components/posts/AllPosts';
-import { listPostsAPI } from '../libs/api/posts';
+import useAllPosts from '../libs/hooks/posts/useAllPosts';
 
 const IndexPage: NextPage = () => {
+  const { posts, onReadPost } = useAllPosts();
+
   return (
     <PageTemplate>
-      <AllPosts />
+      <AllPosts posts={posts} onReadPost={onReadPost} />
     </PageTemplate>
   );
 };

@@ -8,7 +8,6 @@ import { useUserState } from '../../../libs/context/UserContext';
 import { shadow } from '../../../styles';
 import MenuItem from './MenuItem';
 import { toast } from 'react-toastify';
-import useWrite from '../../write/hooks/useWrite';
 
 interface Props {
   onClose: (e: MouseEvent) => void;

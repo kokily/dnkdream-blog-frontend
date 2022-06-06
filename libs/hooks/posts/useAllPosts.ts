@@ -1,17 +1,13 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useInfiniteQuery } from 'react-query';
-import { listPostsAPI } from '../../../libs/api/posts';
+import { listPostsAPI } from '../../api/posts';
 
 function useAllPosts() {
   const router = useRouter();
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>();
-  const {
-    data: posts,
-    status,
-    fetchNextPage,
-  } = useInfiniteQuery(
+  const { data, status, fetchNextPage } = useInfiniteQuery(
     'posts',
     ({ pageParam }) => listPostsAPI({ cursor: pageParam }),
     {
@@ -21,7 +17,6 @@ function useAllPosts() {
     }
   );
 
-  /*
   const posts = useMemo(() => {
     if (!data) {
       return [];
@@ -29,7 +24,6 @@ function useAllPosts() {
 
     return ([] as PostType[]).concat(...data.pages);
   }, [data]);
-  */
 
   const onReadPost = (id: string) => {
     router.push(`/post/${id}`);

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Markdown from '../../common/Markdown';
 import formatDate from '../../../libs/utils/formatDate';
 
 interface Props {
@@ -10,14 +9,14 @@ interface Props {
 
 function PostCard({ post, onReadPost }: Props) {
   return (
-    <Container onClick={() => onReadPost(post.id)}>
-      <Thumbnail src={post.thumbnail} alt="Thumbnail" />
+    <Container>
+      <Thumbnail
+        src={post.thumbnail}
+        alt="Thumbnail"
+        onClick={() => onReadPost(post.id)}
+      />
 
-      <h2>{post.title}</h2>
-
-      <Body>
-        <Markdown markdown={post.body} />
-      </Body>
+      <h2 onClick={() => onReadPost(post.id)}>{post.title}</h2>
 
       <TagBox>
         {post.tags.map((tag) => (
@@ -57,6 +56,7 @@ const Container = styled.div`
 
 const Thumbnail = styled.img`
   width: 100%;
+  height: 450px;
   margin: 0;
   border: none;
   filter: brightness(95%);

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ActiveLink from './ActiveLink';
-import useLeftSide from './hooks/useLeftSide';
+import useLeftSide from '../../libs/hooks/common/useLeftSide';
 
 function LeftSide() {
   const { categories } = useLeftSide();

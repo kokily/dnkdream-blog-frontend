@@ -8,7 +8,7 @@ import {
   updatePostAPI,
 } from '../../../libs/api/posts';
 import { toast } from 'react-toastify';
-import useHeader from '../../common/hooks/useHeader';
+import useHeader from '../common/useHeader';
 import { imageUpload } from '../../../libs/api/upload';
 
 function useWrite(edit?: boolean) {
