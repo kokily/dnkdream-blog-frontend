@@ -41,6 +41,24 @@ export async function readPostAPI(id: string) {
   return response.data;
 }
 
+// Near Posts API
+export type NearPostsQuery = {
+  category?: string;
+  tag?: string;
+};
+
+export async function nearPostsAPI({
+  id,
+  query,
+}: {
+  id: string;
+  query: NearPostsQuery;
+}) {
+  const queryString = qs.stringify(query);
+  const response = await client.get(`/posts/near/${id}?${queryString}`);
+  return response.data;
+}
+
 // Remove Post API
 export async function removePostAPI(id: string) {
   const response = await client.delete(`/posts/${id}`);

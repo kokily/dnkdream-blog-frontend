@@ -1,37 +1,36 @@
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
 import { media } from '../../../styles';
+import formatDate from '../../../libs/utils/formatDate';
 
 interface Props {
-  title?: string;
-  body?: string;
-  thumbnail?: string;
-  tags?: string[];
+  post: PostType;
+  onReadPost: (id: string) => void;
+  onTagPost: (tag: string) => void;
 }
 
-/*
-  Title ->
-    {post.title.length > 26 ? `${post.title.slice(0, 26)}...` : post.title}
-*/
-
-function PostCard({ title, body, thumbnail, tags }: Props) {
+function PostCard({ post, onReadPost, onTagPost }: Props) {
   return (
     <Container>
       <Contents>
         <div>
-          <Link href="/" passHref={true}>
-            <Title>포스트 제목</Title>
-          </Link>
+          <Title onClick={() => onReadPost(post.id)}>
+            {post.title.length > 9
+              ? `${post.title?.slice(0, 9)}...`
+              : post.title}
+          </Title>
 
-          <p>포스트 내용 들어갈 자리</p>
+          <Thumbnail
+            src={post.thumbnail}
+            alt="Thumbnail"
+            onClick={() => onReadPost(post.id)}
+          />
 
-          <DateString>2022. 6. 5. 작성</DateString>
+          <DateString>{formatDate(post.created_at.toString())} 작성</DateString>
 
           <TagBox>
-            <b>#태그</b>
-            <b>#포스트</b>
-            <b>#연습 중</b>
+            <b onClick={() => onTagPost(post.tags[0])}>#{post.tags[0]}</b>
+            <b onClick={() => onTagPost(post.tags[1])}>#{post.tags[1]}</b>
           </TagBox>
         </div>
       </Contents>
@@ -78,9 +77,14 @@ const Title = styled.h1`
   }
 `;
 
-const DateString = styled.span`
+const Thumbnail = styled.img`
+  width: 100%;
+  height: 120px;
+`;
+
+const DateString = styled.div`
   display: block;
-  margin-top: 1.2rem;
+  margin-top: 0.3rem;
   margin-left: 0.5rem;
   font-size: 1rem;
   font-weight: bold;
@@ -88,7 +92,7 @@ const DateString = styled.span`
 `;
 
 const TagBox = styled.p`
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   transition: 0.14s all;
 
   b {

@@ -29,6 +29,11 @@ function useAllPosts() {
     router.push(`/post/${id}`);
   };
 
+  const onTagPost = (tag: string) => {
+    console.log(tag);
+    router.push(`/tag/${tag}`);
+  };
+
   const intersectionObserver = (
     entires: IntersectionObserverEntry[],
     io: IntersectionObserver
@@ -57,6 +62,7 @@ function useAllPosts() {
     posts,
     status,
     onReadPost,
+    onTagPost,
   };
 }
 

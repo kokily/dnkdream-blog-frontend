@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import PostCard from './right/PostCard';
 
@@ -8,15 +9,33 @@ interface Props {
 }
 
 function RightSide({ prev, next }: Props) {
+  const router = useRouter();
+
+  const onReadPost = (id: string) => {
+    router.push(`/post/${id}`);
+  };
+
+  const onTagPost = (tag: string) => {
+    router.push(`/tag/${tag}`);
+  };
+
   return (
     <Container>
       <Title>다른 글</Title>
 
       <PostTitle className="prev">이전 글</PostTitle>
-      {prev ? <PostCard /> : <span>이전 글이 없습니다.</span>}
+      {prev ? (
+        <PostCard post={prev} onReadPost={onReadPost} onTagPost={onTagPost} />
+      ) : (
+        <span>이전 글이 없습니다.</span>
+      )}
 
       <PostTitle className="next">다음 글</PostTitle>
-      {next ? <PostCard /> : <span>다음 글이 없습니다.</span>}
+      {next ? (
+        <PostCard post={next} onReadPost={onReadPost} onTagPost={onTagPost} />
+      ) : (
+        <span>다음 글이 없습니다.</span>
+      )}
     </Container>
   );
 }

@@ -5,9 +5,10 @@ import formatDate from '../../../libs/utils/formatDate';
 interface Props {
   post: PostType;
   onReadPost: (id: string) => void;
+  onTagPost: (tag: string) => void;
 }
 
-function PostCard({ post, onReadPost }: Props) {
+function PostCard({ post, onReadPost, onTagPost }: Props) {
   return (
     <Container>
       <Thumbnail
@@ -20,11 +21,13 @@ function PostCard({ post, onReadPost }: Props) {
 
       <TagBox>
         {post.tags.map((tag) => (
-          <Tag key={tag}>#{tag}</Tag>
+          <Tag key={tag} onClick={() => onTagPost(tag)}>
+            #{tag}
+          </Tag>
         ))}
       </TagBox>
 
-      <DateBox>{formatDate(post.created_at.toString())}</DateBox>
+      <DateBox>{formatDate(post.created_at.toString())} 작성</DateBox>
     </Container>
   );
 }

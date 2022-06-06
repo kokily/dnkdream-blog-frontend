@@ -4,11 +4,11 @@ import AllPosts from '../components/posts/AllPosts';
 import useAllPosts from '../libs/hooks/posts/useAllPosts';
 
 const IndexPage: NextPage = () => {
-  const { posts, onReadPost } = useAllPosts();
+  const { posts, onReadPost, onTagPost } = useAllPosts();
 
   return (
-    <PageTemplate>
-      <AllPosts posts={posts} onReadPost={onReadPost} />
+    <PageTemplate next={posts.length > 1 ? posts[1] : undefined}>
+      <AllPosts posts={posts} onReadPost={onReadPost} onTagPost={onTagPost} />
     </PageTemplate>
   );
 };

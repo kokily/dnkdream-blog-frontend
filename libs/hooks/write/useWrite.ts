@@ -125,8 +125,8 @@ function useWrite(edit?: boolean) {
       }
     };
 
-    toggleMenu();
     upload.click();
+    toggleMenu();
   };
 
   return {

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import useLoggedIn from '../../../components/common/hooks/useLoggedIn';
+import useLoggedIn from '../../../libs/hooks/auth/useLoggedIn';
 import PageTemplate from '../../../components/common/PageTemplate';
 
 const EditPage: NextPage = () => {
