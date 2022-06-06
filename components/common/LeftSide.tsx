@@ -11,15 +11,12 @@ function LeftSide() {
       <div>
         <Title>카테고리</Title>
 
-        <CategoryItem>Development</CategoryItem>
-        <CategoryItem>Travel</CategoryItem>
-        <CategoryItem>ETC</CategoryItem>
         {categories &&
           categories.length > 0 &&
           categories.map((category) => (
             <ActiveLink
               key={category}
-              href={`/${category}`}
+              href={`/category/${category}`}
               activeClassName="active"
             >
               <CategoryItem>{category}</CategoryItem>

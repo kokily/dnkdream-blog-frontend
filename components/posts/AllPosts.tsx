@@ -6,19 +6,11 @@ import useAllPosts from './hooks/useAllPosts';
 interface Props {}
 
 function AllPosts({}: Props) {
-  const { posts, loading, onReadPost } = useAllPosts();
+  const { posts, status, onReadPost } = useAllPosts();
 
-  if (loading) return <div>Loading...</div>;
+  if (status === 'loading') return <div>Loading...</div>;
 
-  return (
-    <Container>
-      <PostCard onReadPost={onReadPost} />
-      <PostCard onReadPost={onReadPost} />
-      <PostCard onReadPost={onReadPost} />
-      <PostCard onReadPost={onReadPost} />
-      <PostCard onReadPost={onReadPost} />
-    </Container>
-  );
+  return <Container>{posts && JSON.stringify(console.log(posts))}</Container>;
 }
 
 // Styles

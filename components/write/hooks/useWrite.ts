@@ -8,28 +8,25 @@ import {
   updatePostAPI,
 } from '../../../libs/api/posts';
 import { toast } from 'react-toastify';
+import useHeader from '../../common/hooks/useHeader';
+import { imageUpload } from '../../../libs/api/upload';
 
 function useWrite(edit?: boolean) {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const { toggleMenu } = useHeader();
   const { id }: { id?: string } = router.query;
-  const [inputs, setInputs] = useState({
-    category: '',
-    title: '',
-    thumbnail: '',
-  });
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
   const [tags, setTags] = useState<string[]>([]);
-  const { category, title, thumbnail } = inputs;
-  const { data: post } = useQuery('post', () => readPostAPI(id!), {
+  useQuery('post', () => readPostAPI(id!), {
     onSuccess: (data) => {
-      setInputs({
-        ...inputs,
-        category: data.category,
-        title: data.title,
-        thumbnail: data.thumbnail,
-      });
+      setCategory(data.category);
+      setTitle(data.title);
       setBody(data.body);
+      setThumbnail(data.thumbnail);
       setTags(data.tags);
     },
     onError: () => console.log(''),
@@ -51,16 +48,24 @@ function useWrite(edit?: boolean) {
     },
   });
 
-  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
+  const onChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
+    setCategory(e.target.value);
+  };
+
+  const onChangeTitle = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const onChangeBody = (text: string) => {
+    setBody(text);
   };
 
   const onChangeTags = (nextTags: string[]) => {
     setTags(nextTags);
+  };
+
+  const onBack = () => {
+    router.back();
   };
 
   const onWrite = useCallback(
@@ -104,30 +109,23 @@ function useWrite(edit?: boolean) {
 
       formData.append('file', file);
 
-      const response = await fetch('http://localhost:4000/api/upload', {
-        method: 'post',
-        body: formData,
-      });
+      const response = await imageUpload(formData);
 
       if (!response) {
         toast.error('업로드 에러 발생!');
         return;
       }
 
-      const data = await response.json();
-
       if (isThumbnail) {
-        setInputs({
-          ...inputs,
-          thumbnail: `https://image.dnkdream.com/${data.key}`,
-        });
+        setThumbnail(`https://image.dnkdream.com/${response.key}`);
       } else {
         let oldBody = body;
-        let newBody = `${oldBody}\n\n![](${data.url})`;
+        let newBody = `${oldBody}\n\n![](https://image.dnkdream.com/${response.key})`;
         setBody(newBody);
       }
     };
 
+    toggleMenu();
     upload.click();
   };
 
@@ -137,9 +135,11 @@ function useWrite(edit?: boolean) {
     thumbnail,
     body,
     tags,
-    onChange,
+    onChangeCategory,
+    onChangeTitle,
+    onChangeBody,
     onChangeTags,
-    setBody,
+    onBack,
     onWrite,
     onUploadImage,
   };

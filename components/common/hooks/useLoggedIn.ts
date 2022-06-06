@@ -13,15 +13,14 @@ function useLoggedIn(isAdmin?: boolean) {
     },
     onError: () => {
       setUser(null);
-      router.push('/');
     },
     retry: 0,
     enabled: true,
   });
 
   useEffect(() => {
-    if (isAdmin && user) {
-      if (isAdmin && user.admin === false) {
+    if (isAdmin) {
+      if (isAdmin && (!user || user.admin === false)) {
         alert('관리자만 이용할 수 있습니다!');
         router.push('/');
       }

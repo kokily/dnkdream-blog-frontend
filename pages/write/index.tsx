@@ -4,11 +4,11 @@ import PageTemplate from '../../components/common/PageTemplate';
 import Write from '../../components/write/Write';
 
 const WritePage: NextPage = () => {
-  useLoggedIn();
+  useLoggedIn(true);
 
   return (
     <PageTemplate left={false} right={false}>
-      <Write />
+      <Write isEdit={false} />
     </PageTemplate>
   );
 };

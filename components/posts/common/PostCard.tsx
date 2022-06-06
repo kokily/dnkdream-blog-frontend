@@ -1,26 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
+import Markdown from '../../common/Markdown';
+import formatDate from '../../../libs/utils/formatDate';
 
 interface Props {
+  post: PostType;
   onReadPost: (id: string) => void;
 }
 
-function PostCard({ onReadPost }: Props) {
+function PostCard({ post, onReadPost }: Props) {
   return (
-    <Container onClick={() => onReadPost('1')}>
-      <Thumbnail src="/assets/images/thumbnail1.png" alt="Thumbnail" />
+    <Container onClick={() => onReadPost(post.id)}>
+      <Thumbnail src={post.thumbnail} alt="Thumbnail" />
 
-      <h2>포스트 제목</h2>
+      <h2>{post.title}</h2>
 
-      <Body>포스트 내용 들어가는 곳</Body>
+      <Body>
+        <Markdown markdown={post.body} />
+      </Body>
 
       <TagBox>
-        <Tag>#태그</Tag>
-        <Tag>#포스트</Tag>
-        <Tag>#연습 중</Tag>
+        {post.tags.map((tag) => (
+          <Tag key={tag}>#{tag}</Tag>
+        ))}
       </TagBox>
 
-      <DateBox>2022년 6월 5일 작성</DateBox>
+      <DateBox>{formatDate(post.created_at.toString())}</DateBox>
     </Container>
   );
 }

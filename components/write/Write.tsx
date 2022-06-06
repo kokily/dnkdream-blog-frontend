@@ -1,22 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import Input from '../auth/Input';
+import InputGroup from '../auth/InputGroup';
 import AddTagBox from './editor/AddTagBox';
+import EditorFooter from './editor/EditorFooter';
 import EditorTitle from './editor/EditorTitle';
+import QuillEditor from './editor/QuillEditor';
 import ThumbnailBox from './editor/ThumbnailBox';
 import useTags from './hooks/useTag';
 import useWrite from './hooks/useWrite';
-import WriteBody from './WriteBody';
 
-function Write() {
+interface Props {
+  isEdit: boolean;
+}
+
+function Write({ isEdit }: Props) {
   const {
     category,
     title,
     body,
     thumbnail,
     tags,
-    onChange,
+    onChangeCategory,
+    onChangeTitle,
+    onChangeBody,
     onChangeTags,
-    setBody,
+    onUploadImage,
+    onBack,
+    onWrite,
   } = useWrite();
   const { input, localTags, onChangeText, onAddTag, removeTag } = useTags({
     tags,
@@ -29,9 +40,19 @@ function Write() {
         <EditorContents>
           <EditorTitle
             placeholder="제목을 입력하세요"
-            onChange={onChange}
+            onChange={onChangeTitle}
             value={title}
           />
+
+          <CategoryBox>
+            <InputGroup
+              type="text"
+              name="category"
+              value={category}
+              onChange={onChangeCategory}
+              label="카테고리 입력"
+            />
+          </CategoryBox>
 
           <TagBox>
             <AddTagBox
@@ -43,8 +64,16 @@ function Write() {
             />
           </TagBox>
 
-          {thumbnail && <>썸네일 뿅!</>}
+          <ThumbnailBox thumbnail={thumbnail} onUploadImage={onUploadImage} />
+
+          <QuillEditor isEdit={isEdit} QuillChange={onChangeBody} body={body} />
         </EditorContents>
+
+        <EditorFooter
+          onBack={onBack}
+          onSubmit={onWrite}
+          onUploadImage={onUploadImage}
+        />
       </EditorBox>
     </Container>
   );
@@ -70,6 +99,13 @@ const EditorContents = styled.div`
   padding-top: 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
+`;
+
+const CategoryBox = styled.div`
+  width: 120px;
+  height: 60px;
+  display: flex;
+  margin-left: 1rem;
 `;
 
 const TagBox = styled.div`

@@ -1,4 +1,4 @@
-import type { ChangeEvent, MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from 'react-query';
@@ -30,7 +30,6 @@ function MenuList({ onClose, visible, toggleMenu }: Props) {
     },
   });
   const url = router.pathname.substring(1, 6);
-  const { onWrite, onUploadImage } = useWrite();
 
   return (
     <Container visible={visible} onClick={onClose}>
@@ -50,20 +49,6 @@ function MenuList({ onClose, visible, toggleMenu }: Props) {
               <MenuItem onClick={() => logout()}>로그아웃</MenuItem>
             ) : (
               <MenuItem href="/admin">관리자 로그인</MenuItem>
-            )}
-
-            {user && user.admin && url === 'write' && (
-              <>
-                <Split />
-
-                <MenuItem onClick={() => onUploadImage(true)}>
-                  썸네일 업로드
-                </MenuItem>
-                <MenuItem onClick={() => onUploadImage(false)}>
-                  이미지 업로드
-                </MenuItem>
-                <MenuItem onClick={onWrite}>저장하기</MenuItem>
-              </>
             )}
           </>
         )}

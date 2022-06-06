@@ -10,6 +10,7 @@ import { UserContextProvider } from '../libs/context/UserContext';
 import * as ga from '../libs/utils/ga';
 import GlobalStyle from '../styles';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-quill/dist/quill.snow.css';
 
 function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(new QueryClient());

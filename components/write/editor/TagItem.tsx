@@ -3,14 +3,20 @@ import styled from 'styled-components';
 
 // Styles
 const Container = styled.div`
+  border: 1px solid #35d3b1;
+  border-radius: 15px;
+  padding: 6px 10px 5px 10px;
+  background: #35d3b1;
+  font-weight: bold;
   cursor: pointer;
-  color: #6799ff;
+  color: #fff;
   transition: 0.2s all;
   &:hover {
-    color: #f15f5f;
+    color: #35d3b1;
+    background-color: #fff;
   }
   & + & {
-    margin-left: 1.5rem;
+    margin-left: 0.7rem;
   }
 `;
 

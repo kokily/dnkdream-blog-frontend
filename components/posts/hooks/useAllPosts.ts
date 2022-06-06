@@ -7,7 +7,11 @@ function useAllPosts() {
   const router = useRouter();
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>();
-  const { data, isFetchingNextPage, fetchNextPage } = useInfiniteQuery(
+  const {
+    data: posts,
+    status,
+    fetchNextPage,
+  } = useInfiniteQuery(
     'posts',
     ({ pageParam }) => listPostsAPI({ cursor: pageParam }),
     {
@@ -17,6 +21,7 @@ function useAllPosts() {
     }
   );
 
+  /*
   const posts = useMemo(() => {
     if (!data) {
       return [];
@@ -24,6 +29,7 @@ function useAllPosts() {
 
     return ([] as PostType[]).concat(...data.pages);
   }, [data]);
+  */
 
   const onReadPost = (id: string) => {
     router.push(`/post/${id}`);
@@ -51,11 +57,11 @@ function useAllPosts() {
 
     observerRef.current = new IntersectionObserver(intersectionObserver);
     boxRef.current && observerRef.current.observe(boxRef.current);
-  }, [data]);
+  }, [posts]);
 
   return {
     posts,
-    loading: isFetchingNextPage,
+    status,
     onReadPost,
   };
 }
