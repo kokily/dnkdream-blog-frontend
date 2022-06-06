@@ -10,7 +10,10 @@ function ThumbnailBox({ thumbnail, onUploadImage }: Props) {
   return (
     <Container>
       {thumbnail ? (
-        <ImageBox src={thumbnail} alt="Thumbnail" />
+        <>
+          <h3>썸네일 ⚑</h3>
+          <ImageBox src={thumbnail} alt="Thumbnail" />
+        </>
       ) : (
         <UploadButton onClick={() => onUploadImage(true)}>
           썸네일을 등록하세요
@@ -26,6 +29,11 @@ const Container = styled.div`
   height: auto;
   margin: 0 auto;
   margin-bottom: 2.2rem;
+
+  h3 {
+    margin-left: 1rem;
+    color: #0e3cc4;
+  }
 `;
 
 const ImageBox = styled.img`
