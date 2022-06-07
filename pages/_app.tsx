@@ -1,8 +1,8 @@
-import type { AppProps } from 'next/app';
+import type { AppContext, AppInitialProps, AppProps } from 'next/app';
+import { useEffect, useRef } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { QueryClient, QueryClientProvider, Hydrate } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
@@ -11,10 +11,18 @@ import * as ga from '../libs/utils/ga';
 import GlobalStyle from '../styles';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-quill/dist/quill.snow.css';
+import { NextComponentType } from 'next';
 
-function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = useState(new QueryClient());
+const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
+  Component,
+  pageProps,
+}) => {
+  const queryClientRef = useRef<QueryClient>();
   const router = useRouter();
+
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
 
   useEffect(() => {
     function handleRouteChange(url: URL) {
@@ -82,7 +90,7 @@ function App({ Component, pageProps }: AppProps) {
       <GlobalStyle />
 
       <UserContextProvider>
-        <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClientRef.current}>
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
           </Hydrate>
@@ -93,6 +101,19 @@ function App({ Component, pageProps }: AppProps) {
       <ToastContainer position="bottom-center" draggable={false} />
     </>
   );
-}
+};
+
+App.getInitialProps = async ({
+  Component,
+  ctx,
+}: AppContext): Promise<AppInitialProps> => {
+  let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+
+  return { pageProps };
+};
 
 export default App;

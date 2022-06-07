@@ -41,6 +41,7 @@ function PostCard({ post, onReadPost, onTagPost }: Props) {
 // Styles
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
   border: 1px solid #9defdf;
   border-radius: 6px;
