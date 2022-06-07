@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { listCategoriesAPI } from '../../api/posts';
+import { listCategoriesAPI } from '../../api/categories';
 
 function useLeftSide() {
   const { data } = useQuery('categories', () => listCategoriesAPI(), {

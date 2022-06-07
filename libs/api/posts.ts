@@ -15,12 +15,6 @@ export async function addPostAPI(payload: AddPostPayload) {
   return response.data;
 }
 
-// List Categories API
-export async function listCategoriesAPI() {
-  const response = await client.get<string[]>('/posts/categories');
-  return response.data;
-}
-
 // List Posts API
 export type ListQuery = {
   category?: string;
@@ -36,8 +30,14 @@ export async function listPostsAPI(query: ListQuery) {
 }
 
 // Read Post API
+export type ReadPostType = {
+  post: PostType | null;
+  next: PostType | null;
+  prev: PostType | null;
+};
+
 export async function readPostAPI(id: string) {
-  const response = await client.get<PostType>(`/posts/${id}`);
+  const response = await client.get<ReadPostType>(`/posts/${id}`);
   return response.data;
 }
 

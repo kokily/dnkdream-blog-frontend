@@ -22,7 +22,7 @@ function Markdown({ markdown }: Props) {
     }
 
     setHtml(
-      marked(html, {
+      marked(markdown, {
         breaks: true,
       })
     );

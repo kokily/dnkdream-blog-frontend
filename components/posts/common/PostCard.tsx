@@ -65,10 +65,6 @@ const Thumbnail = styled.img`
   filter: brightness(95%);
 `;
 
-const Body = styled.div`
-  margin-top: -5px;
-`;
-
 const TagBox = styled.div`
   display: flex;
   justify-content: flex-start;
