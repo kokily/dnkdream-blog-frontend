@@ -1,3 +1,4 @@
+import type { ChangeEvent, MouseEvent } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 import InputGroup from '../auth/InputGroup';
@@ -7,27 +8,36 @@ import EditorTitle from './editor/EditorTitle';
 import QuillEditor from './editor/QuillEditor';
 import ThumbnailBox from './editor/ThumbnailBox';
 import useTags from '../../libs/hooks/write/useTag';
-import useWrite from '../../libs/hooks/write/useWrite';
 
 interface Props {
-  isEdit: boolean;
+  category: string;
+  title: string;
+  body: string;
+  thumbnail: string;
+  tags: string[];
+  onChangeCategory: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeTitle: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeBody: (text: string) => void;
+  onChangeTags: (nextTags: string[]) => void;
+  onUploadImage: (isThumbnail: boolean) => void;
+  onBack: () => void;
+  onWrite: (e: MouseEvent) => void;
 }
 
-function Write({ isEdit }: Props) {
-  const {
-    category,
-    title,
-    body,
-    thumbnail,
-    tags,
-    onChangeCategory,
-    onChangeTitle,
-    onChangeBody,
-    onChangeTags,
-    onUploadImage,
-    onBack,
-    onWrite,
-  } = useWrite();
+function Write({
+  category,
+  title,
+  body,
+  thumbnail,
+  tags,
+  onChangeCategory,
+  onChangeTitle,
+  onChangeBody,
+  onChangeTags,
+  onUploadImage,
+  onBack,
+  onWrite,
+}: Props) {
   const { input, localTags, onChangeText, onAddTag, removeTag } = useTags({
     tags,
     onChangeTags,
@@ -98,6 +108,7 @@ const EditorContents = styled.div`
   padding-top: 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
+  margin-bottom: 10rem;
 `;
 
 const CategoryBox = styled.div`

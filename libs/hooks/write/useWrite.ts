@@ -23,11 +23,13 @@ function useWrite(edit?: boolean) {
   const [tags, setTags] = useState<string[]>([]);
   useQuery('post', () => readPostAPI(id!), {
     onSuccess: (data) => {
-      setCategory(data.category);
-      setTitle(data.title);
-      setBody(data.body);
-      setThumbnail(data.thumbnail);
-      setTags(data.tags);
+      if (data.post) {
+        setCategory(data.post.category);
+        setTitle(data.post.title);
+        setBody(data.post.body);
+        setThumbnail(data.post.thumbnail);
+        setTags(data.post.tags);
+      }
     },
     onError: () => console.log(''),
   });
