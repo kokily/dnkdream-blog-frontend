@@ -3,17 +3,17 @@ import { useRouter } from 'next/router';
 import { useInfiniteQuery } from 'react-query';
 import { listPostsAPI } from '../../api/posts';
 
-function useAllPosts() {
+function useTagPosts() {
   const router = useRouter();
+  const { tag }: { tag?: string } = router.query;
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>();
   const { data, fetchNextPage } = useInfiniteQuery(
-    'posts',
-    ({ pageParam }) => listPostsAPI({ cursor: pageParam }),
+    'tagPosts',
+    ({ pageParam }) => listPostsAPI({ tag, cursor: pageParam }),
     {
       getNextPageParam: (data) =>
         data && data.length === 20 ? data[data.length - 1].id : undefined,
-      enabled: true,
     }
   );
 
@@ -30,18 +30,15 @@ function useAllPosts() {
   };
 
   const onTagPost = (tag: string) => {
-    console.log(tag);
     router.push(`/tag/${tag}`);
   };
 
   const intersectionObserver = (
-    entires: IntersectionObserverEntry[],
+    entries: IntersectionObserverEntry[],
     io: IntersectionObserver
   ) => {
-    entires.forEach((entry) => {
-      // 관찰 주인 entry가 화면에 보일 경우
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // entry 관찰 해제 후 다음 데이터 요청
         io.unobserve(entry.target);
         fetchNextPage();
       }
@@ -50,7 +47,6 @@ function useAllPosts() {
 
   useEffect(() => {
     if (observerRef.current) {
-      // 기존 IO가 있을 경우 연결 해제
       observerRef.current.disconnect();
     }
 
@@ -62,7 +58,8 @@ function useAllPosts() {
     posts,
     onReadPost,
     onTagPost,
+    tag,
   };
 }
 
-export default useAllPosts;
+export default useTagPosts;
