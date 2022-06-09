@@ -52,15 +52,6 @@ const Card = styled.div`
     left: -0.7rem;
   }
 
-  &::after {
-    height: 15rem;
-    width: 15rem;
-    background-color: #4172f5aa;
-    top: -8rem;
-    right: -8rem;
-    box-shadow: 2rem 6rem 0 -3rem #d1e5e3;
-  }
-
   &::after,
   img {
     border-radius: 50%;
@@ -70,7 +61,7 @@ const Card = styled.div`
     display: block;
     text-align: center;
     margin-top: 4rem;
-    max-height: 360px;
+    max-height: 380px;
   }
 `;
 
