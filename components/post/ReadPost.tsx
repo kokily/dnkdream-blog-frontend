@@ -6,6 +6,7 @@ import PostTitle from './PostTitle';
 import Markdown from '../common/Markdown';
 import RemoveModal from './RemoveModal';
 import Button from '../common/Button';
+import Comment from '../common/Comment';
 
 interface Props {
   user: UserType | null;
@@ -57,6 +58,8 @@ function ReadPost({
           </>
         )}
       </PostButtons>
+
+      <Comment />
 
       <RemoveModal visible={modal} onCancel={onCancel} onConfirm={onConfirm} />
     </>
