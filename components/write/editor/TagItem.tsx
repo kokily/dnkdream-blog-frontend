@@ -29,4 +29,6 @@ const TagItem = React.memo<Props>(({ tag, onRemove }) => (
   <Container onClick={() => onRemove(tag)}>#{tag}</Container>
 ));
 
+TagItem.displayName = 'TagItem';
+
 export default TagItem;

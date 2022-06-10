@@ -22,4 +22,6 @@ const TagsList = React.memo<Props>(({ tags, onRemove }) => (
   </Container>
 ));
 
+TagsList.displayName = 'TagsList';
+
 export default TagsList;

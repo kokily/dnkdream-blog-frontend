@@ -12,7 +12,7 @@ function Info() {
       </Name>
 
       <Content>
-        I'm not a Developer, but my hobby is development, mostly front-end
+        I&apos;m not a Developer, but my hobby is development, mostly front-end
       </Content>
 
       <Links>
