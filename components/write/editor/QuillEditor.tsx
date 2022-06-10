@@ -158,6 +158,7 @@ const Container = styled.div`
   pre {
     font-size: 1.215rem;
     padding: 0.5rem 0.8rem;
+    background: none;
   }
 
   .ql-editor {

@@ -1,3 +1,4 @@
+import type { NextComponentType } from 'next';
 import type { AppContext, AppInitialProps, AppProps } from 'next/app';
 import { useEffect, useRef } from 'react';
 import Head from 'next/head';
@@ -11,7 +12,6 @@ import * as ga from '../libs/utils/ga';
 import GlobalStyle from '../styles';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-quill/dist/quill.snow.css';
-import { NextComponentType } from 'next';
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   Component,

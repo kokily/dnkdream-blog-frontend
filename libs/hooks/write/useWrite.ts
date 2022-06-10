@@ -83,7 +83,13 @@ function useWrite(edit?: boolean) {
         tags === [] ? [] : [...new Set(tags.map((tag) => tag.trim()))];
 
       if (!edit) {
-        addPost({ category, title, body, thumbnail, tags: overlapTags });
+        addPost({
+          category,
+          title,
+          body,
+          thumbnail,
+          tags: overlapTags,
+        });
       } else if (id) {
         updatePost({
           id,

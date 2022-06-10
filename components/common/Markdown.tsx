@@ -7,6 +7,7 @@ import 'prismjs/components/prism-bash.min.js';
 import 'prismjs/components/prism-javascript.min.js';
 import 'prismjs/components/prism-jsx.min.js';
 import 'prismjs/components/prism-css.min.js';
+import 'prismjs/components/prism-tsx.min.js';
 
 interface Props {
   markdown: string;
@@ -21,11 +22,18 @@ function Markdown({ markdown }: Props) {
       return;
     }
 
-    setHtml(
-      marked(markdown, {
-        breaks: true,
-      })
+    marked.setOptions({
+      breaks: true,
+    });
+
+    let oldBody = markdown;
+    let newFrontBody = oldBody.replaceAll(
+      '<pre class="ql-syntax" spellcheck="false">',
+      '<pre class="ql-syntax" spellcheck="false"><code class="language-tsx">'
     );
+    let newBackBody = newFrontBody.replaceAll('</pre>', '</code></pre>');
+
+    setHtml(marked.parse(newBackBody));
   };
 
   useEffect(() => {
@@ -78,9 +86,9 @@ const Container = styled.div`
     color: #4056b9;
   }
   pre {
-    background: #4a4a4a;
     padding: 0.5rem;
     color: #ffffff;
+    background: #4a4a4a;
     border-radius: 4px;
     white-space: pre-wrap;
   }
