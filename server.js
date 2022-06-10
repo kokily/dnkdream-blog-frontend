@@ -51,7 +51,7 @@ devApp.prepare().then(() => {
 
     httpServer.listen(80);
     httpsServer.listen(config.port, () => {
-      console.log(`> Ready on https://${config.hostname}:${config.ssl}`);
+      console.log(`> Ready on https://${config.hostname}:${config.port}`);
     });
   } else {
     httpServer = http.createServer(app.callback());
