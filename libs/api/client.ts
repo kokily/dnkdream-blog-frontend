@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://api.dnkdream.com/api',
+  baseURL:
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/api'
+      : 'https://api.dnkdream.com/api',
   withCredentials: true,
 });
 

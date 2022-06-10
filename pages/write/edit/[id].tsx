@@ -36,6 +36,7 @@ const EditPage: NextPage = () => {
         onBack={onBack}
         onWrite={onWrite}
         onUploadImage={onUploadImage}
+        isEdit={true}
       />
     </PageTemplate>
   );

@@ -132,6 +132,38 @@ const Container = styled.div`
   min-height: 650px;
   font-size: 1.125rem;
   margin-bottom: 5rem;
+  scroll-behavior: auto;
+
+  p {
+    font-size: 1.215rem;
+
+    em {
+      color: #fff;
+      background: #1fb498;
+      padding: 0 0.5rem 0.1rem 0.5rem;
+      font-style: normal;
+      border-radius: 4px;
+    }
+
+    strong {
+      color: #1e63c4;
+      border-radius: 6px;
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+    }
+  }
+
+  pre {
+    font-size: 1.215rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .ql-editor {
+    overflow-y: scroll;
+    height: 650px;
+  }
 
   .ql-toolbar {
     border: none;
@@ -140,6 +172,7 @@ const Container = styled.div`
   .ql-container {
     flex: 1 1 0%;
     min-height: 0px;
+    height: auto;
   }
   img {
     width: 100%;

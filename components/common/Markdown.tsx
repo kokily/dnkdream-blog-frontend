@@ -43,7 +43,8 @@ function Markdown({ markdown }: Props) {
 
 // Styles
 const Container = styled.div`
-  line-height: 1.8;
+  line-height: 1.6;
+  padding-left: 0.5rem;
   margin-bottom: 14rem;
   blockquote {
     border-left: 4px solid #1b3bf5;
@@ -76,19 +77,12 @@ const Container = styled.div`
     margin-top: 2rem;
     color: #4056b9;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  p {
-    code {
-      background: #e6e6e6;
-      padding: 0.25rem;
-      color: #1b3bf5;
-      border: 1px solid #bbbbbb;
-      border-radius: 2px;
-    }
+  pre {
+    background: #4a4a4a;
+    padding: 0.5rem;
+    color: #ffffff;
+    border-radius: 4px;
+    white-space: pre-wrap;
   }
   p {
     em {
@@ -97,8 +91,7 @@ const Container = styled.div`
       padding-right: 0.2rem;
     }
     strong {
-      background: rgba(255, 255, 255, 0.25);
-      color: #01fad9;
+      color: #1e63c4;
       border-radius: 6px;
       padding-left: 0.4rem;
       padding-right: 0.4rem;
@@ -139,7 +132,37 @@ const Container = styled.div`
     border-radius: 4px;
   }
   p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+  }
+  p {
+    code {
+      background: #2c2c2c;
+      padding: 0.25rem;
+      color: #fff;
+      border: 1px solid #3c3c3c;
+      border-radius: 2px;
+    }
+  }
+
+  p {
+    font-size: 1.215rem;
+
+    em {
+      color: #fff;
+      background: #1fb498;
+      padding: 0.1rem 0.5rem 0rem 0.5rem;
+      font-style: normal;
+      border-radius: 4px;
+    }
+
+    strong {
+      color: #1e63c4;
+      border-radius: 6px;
+      padding-left: 0.4rem;
+      padding-right: 0.4rem;
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+    }
   }
 `;
 

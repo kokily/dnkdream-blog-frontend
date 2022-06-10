@@ -13,6 +13,7 @@ interface Props {
   post: PostType;
   onBack: () => void;
   onEdit: () => void;
+  onTagPost: (tag: string) => void;
   modal: boolean;
   onRemoveClick: () => void;
   onCancel: () => void;
@@ -24,6 +25,7 @@ function ReadPost({
   post,
   onBack,
   onEdit,
+  onTagPost,
   modal,
   onRemoveClick,
   onCancel,
@@ -36,7 +38,7 @@ function ReadPost({
           <CategoryLink>카테고리 &gt; {post.category}</CategoryLink>
         </Link>
 
-        <PostTitle post={post} />
+        <PostTitle post={post} onTagPost={onTagPost} />
       </Container>
 
       <PostContent>
@@ -76,8 +78,16 @@ const Container = styled.div`
   border-bottom: 0.2rem outset #38d9a9;
   margin-top: 1.5rem;
   margin-bottom: 10rem;
+
   ${media.medium} {
     margin-bottom: 1.5rem;
+    max-width: 100%;
+  }
+
+  ${media.small} {
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 `;
 
@@ -93,8 +103,10 @@ const CategoryLink = styled.a`
 const PostContent = styled.div`
   font-size: 1.2rem;
   margin-bottom: 17rem;
+
   ${media.medium} {
     margin-bottom: 0;
+    padding-right: 0.5rem;
   }
 `;
 

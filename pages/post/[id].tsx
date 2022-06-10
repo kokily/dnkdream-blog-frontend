@@ -14,6 +14,7 @@ const ReadPostPage: NextPage = () => {
     prev,
     onBack,
     onEdit,
+    onTagPost,
     modal,
     onRemoveClick,
     onCancel,
@@ -30,6 +31,7 @@ const ReadPostPage: NextPage = () => {
           onRemoveClick={onRemoveClick}
           onCancel={onCancel}
           onConfirm={onConfirm}
+          onTagPost={onTagPost}
           onBack={onBack}
           onEdit={onEdit}
         />

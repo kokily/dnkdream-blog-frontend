@@ -5,9 +5,10 @@ import { media, shadow } from '../../styles';
 
 interface Props {
   post: PostType;
+  onTagPost: (tag: string) => void;
 }
 
-function PostTitle({ post }: Props) {
+function PostTitle({ post, onTagPost }: Props) {
   return (
     <Container>
       <Title>{post.title}</Title>
@@ -15,7 +16,7 @@ function PostTitle({ post }: Props) {
 
       <TagBox>
         {post.tags.map((tag, i) => (
-          <div key={i} className="tag">
+          <div key={i} className="tag" onClick={() => onTagPost(tag)}>
             #{tag}
           </div>
         ))}
@@ -37,6 +38,10 @@ const Container = styled.div`
   p {
     font-weight: bold;
     color: #8c8585;
+  }
+
+  ${media.medium} {
+    padding-right: 0.5rem;
   }
 `;
 
@@ -80,6 +85,10 @@ const ThumbnailBox = styled.div`
     border-radius: 4px;
     padding: 5px;
     ${shadow(2)};
+
+    ${media.medium} {
+      width: 100% !important;
+    }
   }
 `;
 

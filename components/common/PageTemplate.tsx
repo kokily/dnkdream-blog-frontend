@@ -51,6 +51,10 @@ const Contents = styled.div`
   display: flex;
   width: 1200px;
   margin-top: 56px;
+
+  ${media.small} {
+    width: 100%;
+  }
 `;
 
 const LeftContainer = styled.aside`
@@ -72,8 +76,9 @@ const Main = styled.main`
   }
 
   ${media.small} {
-    margin-left: 10px;
+    margin-left: 5px;
     margin-right: 10px;
+    width: 100%;
   }
 `;
 

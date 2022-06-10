@@ -7,16 +7,17 @@ interface Props {
   onBack: () => void;
   onSubmit: (e: MouseEvent) => void;
   onUploadImage: (isThumbnail: boolean) => void;
+  isEdit?: boolean;
 }
 
-function EditorFooter({ onBack, onSubmit, onUploadImage }: Props) {
+function EditorFooter({ onBack, onSubmit, onUploadImage, isEdit }: Props) {
   return (
     <Container>
       <Button back onClick={onBack}>
         뒤로가기
       </Button>
       <Button submit onClick={onSubmit}>
-        등록하기
+        {isEdit ? '저장하기' : '등록하기'}
       </Button>
       <Button upload onClick={() => onUploadImage(false)}>
         업로드

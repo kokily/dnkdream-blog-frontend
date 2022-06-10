@@ -31,6 +31,10 @@ function useReadPost() {
     }
   }, [removePost]);
 
+  const onTagPost = (tag: string) => {
+    router.push(`/tag/${tag}`);
+  };
+
   const onRemoveClick = () => {
     setModal(true);
   };
@@ -50,6 +54,7 @@ function useReadPost() {
     prev: data?.prev,
     onBack,
     onEdit,
+    onTagPost,
     modal,
     onRemoveClick,
     onCancel,

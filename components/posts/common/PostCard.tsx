@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import formatDate from '../../../libs/utils/formatDate';
+import { media } from '../../../styles';
 
 interface Props {
   post: PostType;
@@ -63,6 +64,10 @@ const Thumbnail = styled.img`
   margin: 0;
   border: none;
   filter: brightness(95%);
+
+  ${media.small} {
+    height: 280px;
+  }
 `;
 
 const TagBox = styled.div`

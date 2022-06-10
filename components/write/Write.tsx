@@ -22,6 +22,7 @@ interface Props {
   onUploadImage: (isThumbnail: boolean) => void;
   onBack: () => void;
   onWrite: (e: MouseEvent) => void;
+  isEdit?: boolean;
 }
 
 function Write({
@@ -37,6 +38,7 @@ function Write({
   onUploadImage,
   onBack,
   onWrite,
+  isEdit,
 }: Props) {
   const { input, localTags, onChangeText, onAddTag, removeTag } = useTags({
     tags,
@@ -82,6 +84,7 @@ function Write({
           onBack={onBack}
           onSubmit={onWrite}
           onUploadImage={onUploadImage}
+          isEdit={isEdit}
         />
       </EditorBox>
     </Container>
