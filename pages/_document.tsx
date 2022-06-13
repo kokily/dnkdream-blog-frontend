@@ -41,6 +41,10 @@ class MyDocument extends Document {
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             rel="stylesheet"
           />
+          <link
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

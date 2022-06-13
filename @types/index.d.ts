@@ -14,3 +14,5 @@ interface PostType {
   created_at: Date;
   updated_at: Date;
 }
+
+declare module 'quilljs-markdown';

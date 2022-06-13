@@ -1,3 +1,5 @@
+import QuillMarkdown from 'quilljs-markdown';
+
 export const modules = {
   toolbar: {
     container: [
@@ -18,5 +20,22 @@ export const modules = {
       ['clean'],
     ],
     ImageDrop: true,
+  },
+  syntax: true,
+  keyboard: {
+    bindings: {
+      tab: {
+        key: 9,
+        handler: function () {
+          return true;
+        },
+      },
+      enter: {
+        key: 13,
+        handler: function () {
+          return true;
+        },
+      },
+    },
   },
 };

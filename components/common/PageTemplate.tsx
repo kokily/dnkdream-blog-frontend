@@ -69,6 +69,7 @@ const LeftContainer = styled.aside`
 
 const Main = styled.main`
   flex: 3;
+  width: 500px;
   height: 100%;
 
   ${media.medium} {

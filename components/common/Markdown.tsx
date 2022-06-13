@@ -29,11 +29,11 @@ function Markdown({ markdown }: Props) {
     let oldBody = markdown;
     let newFrontBody = oldBody.replaceAll(
       '<pre class="ql-syntax" spellcheck="false">',
-      '<pre class="ql-syntax" spellcheck="false"><code class="language-tsx">'
+      '<pre class="ql-syntax" spellcheck="false"><code class="language-jsx">'
     );
-    let newBackBody = newFrontBody.replaceAll('</pre>', '</code></pre>');
+    let newBody = newFrontBody.replaceAll('</pre>', '</code></pre>');
 
-    setHtml(marked.parse(newBackBody));
+    setHtml(marked.parse(newBody));
   };
 
   useEffect(() => {
@@ -90,7 +90,17 @@ const Container = styled.div`
     color: #ffffff;
     background: #4a4a4a;
     border-radius: 4px;
-    white-space: pre-wrap;
+    overflow-x: auto;
+
+    code {
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+
+    span.punctuation {
+    }
   }
   p {
     em {

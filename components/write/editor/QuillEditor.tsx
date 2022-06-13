@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 import DragDrop from './DragDrop';
 import { modules } from './config';
 import { media } from '../../../styles';
 import { imageUpload } from '../../../libs/api/upload';
-import { toast } from 'react-toastify';
 
 interface Props {
   QuillChange: (text: string) => void;
@@ -159,6 +159,9 @@ const Container = styled.div`
     font-size: 1.215rem;
     padding: 0.5rem 0.8rem;
     background: none;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: normal;
   }
 
   .ql-editor {
