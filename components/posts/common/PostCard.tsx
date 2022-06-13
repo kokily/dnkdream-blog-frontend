@@ -66,20 +66,26 @@ const Thumbnail = styled.img`
   filter: brightness(95%);
 
   ${media.small} {
-    height: 280px;
+    height: auto;
   }
 `;
 
 const TagBox = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-top: 22px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+
+  ${media.small} {
+    margin-top: 0;
+  }
 `;
 
 const Tag = styled.div`
   border: 1px solid #35d3b1;
   border-radius: 15px;
   padding: 5px 10px;
+  margin-bottom: 5px;
   background: #35d3b1;
   font-weight: bold;
   cursor: pointer;
@@ -89,8 +95,11 @@ const Tag = styled.div`
     color: #35d3b1;
     background-color: #fff;
   }
-  & + & {
-    margin-left: 0.7rem;
+
+  margin-right: 5px;
+
+  ${media.small} {
+    margin-left: 0;
   }
 `;
 

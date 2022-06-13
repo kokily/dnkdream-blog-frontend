@@ -54,6 +54,8 @@ const Contents = styled.div`
 
   ${media.small} {
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 `;
 
@@ -77,9 +79,7 @@ const Main = styled.main`
   }
 
   ${media.small} {
-    margin-left: 5px;
-    margin-right: 10px;
-    width: 100%;
+    max-width: 100%;
   }
 `;
 
