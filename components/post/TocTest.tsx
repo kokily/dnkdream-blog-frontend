@@ -12,19 +12,17 @@ function TocTest({ html }: Props) {
   return (
     <Cotainer>
       <Contents>
-        <Layout>
-          <TocBox>
-            {tocs.map((toc) => (
-              <TocItem
-                key={toc.text}
-                active={activeId === toc.id}
-                style={{ marginLeft: toc.level * 12 }}
-              >
-                <a href={`#${toc.id}`}>{toc.text}</a>
-              </TocItem>
-            ))}
-          </TocBox>
-        </Layout>
+        <TocBox>
+          {tocs.map((toc) => (
+            <TocItem
+              key={toc.text}
+              active={activeId === toc.id}
+              style={{ marginLeft: toc.level * 12 }}
+            >
+              <a href={`#${toc.id}`}>{toc.text}</a>
+            </TocItem>
+          ))}
+        </TocBox>
       </Contents>
     </Cotainer>
   );
@@ -41,26 +39,19 @@ const Cotainer = styled.div`
   padding-right: 0.5rem;
   position: fixed;
   top: 56px;
+  left: 75%;
   height: 100%;
 `;
 
 const Contents = styled.div`
   position: relative;
   margin-top: 2rem;
-  width: 100%;
-`;
-
-const Layout = styled.div`
-  position: absolute;
-  right: 0;
+  width: 100%; ;
 `;
 
 const TocBox = styled.div`
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 10%;
-  right: 10rem;
   border-left: 2px solid #38d9a9;
   padding-left: 1rem;
 `;

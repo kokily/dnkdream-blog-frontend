@@ -20,7 +20,7 @@ function Header() {
 
         <Spacer />
 
-        <div ref={ref}>
+        <div ref={ref} className="menu">
           <MenuButton onClick={toggleMenu} />
           <MenuList
             onClose={onOutsideClick}

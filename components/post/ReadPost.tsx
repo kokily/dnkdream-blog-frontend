@@ -34,7 +34,6 @@ function ReadPost({
 }: Props) {
   return (
     <>
-      <Spacer />
       <Container>
         <Link href={`/category/${post.category}`} passHref>
           <CategoryLink>카테고리 &gt; {post.category}</CategoryLink>
@@ -71,9 +70,6 @@ function ReadPost({
 }
 
 // Styles
-const Spacer = styled.div`
-  display: block;
-`;
 
 const Container = styled.div`
   display: flex;
