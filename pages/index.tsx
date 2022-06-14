@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
 import { dehydrate, QueryClient } from 'react-query';
 import PageTemplate from '../components/common/PageTemplate';
 import AllPosts from '../components/posts/AllPosts';
@@ -9,9 +10,14 @@ const IndexPage: NextPage = () => {
   const { posts, onReadPost, onTagPost } = useAllPosts();
 
   return (
-    <PageTemplate next={posts.length > 1 ? posts[1] : undefined} right>
-      <AllPosts posts={posts} onReadPost={onReadPost} onTagPost={onTagPost} />
-    </PageTemplate>
+    <>
+      <Head>
+        <title>어서오세요 - D&K Dreams Blog</title>
+      </Head>
+      <PageTemplate next={posts.length > 1 ? posts[1] : undefined} right>
+        <AllPosts posts={posts} onReadPost={onReadPost} onTagPost={onTagPost} />
+      </PageTemplate>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
 import { dehydrate, QueryClient } from 'react-query';
 import PageTemplate from '../../components/common/PageTemplate';
 import AllPosts from '../../components/posts/AllPosts';
@@ -9,14 +10,19 @@ const TagPostsPage: NextPage = () => {
   const { posts, onReadPost, onTagPost, tag } = useTagPosts();
 
   return (
-    <PageTemplate>
-      <AllPosts
-        posts={posts}
-        onReadPost={onReadPost}
-        onTagPost={onTagPost}
-        tag={tag}
-      />
-    </PageTemplate>
+    <>
+      <Head>
+        <title>{tag} 태그 선택 - D&K Dreams Blog</title>
+      </Head>
+      <PageTemplate right={true}>
+        <AllPosts
+          posts={posts}
+          onReadPost={onReadPost}
+          onTagPost={onTagPost}
+          tag={tag}
+        />
+      </PageTemplate>
+    </>
   );
 };
 

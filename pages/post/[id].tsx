@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
 import { dehydrate, QueryClient } from 'react-query';
 import PageTemplate from '../../components/common/PageTemplate';
 import ReadPost from '../../components/post/ReadPost';
@@ -21,23 +22,28 @@ const ReadPostPage: NextPage = () => {
   } = useReadPost();
 
   return (
-    <PageTemplate right={post && <TocTest html={post.body} />}>
-      {post ? (
-        <ReadPost
-          user={user}
-          post={post}
-          modal={modal}
-          onRemoveClick={onRemoveClick}
-          onCancel={onCancel}
-          onConfirm={onConfirm}
-          onTagPost={onTagPost}
-          onBack={onBack}
-          onEdit={onEdit}
-        />
-      ) : (
-        <h2>Loading...</h2>
-      )}
-    </PageTemplate>
+    <>
+      <Head>
+        <title>{post?.title} - D&K Dreams Blog</title>
+      </Head>
+      <PageTemplate right={post && <TocTest html={post.body} />}>
+        {post ? (
+          <ReadPost
+            user={user}
+            post={post}
+            modal={modal}
+            onRemoveClick={onRemoveClick}
+            onCancel={onCancel}
+            onConfirm={onConfirm}
+            onTagPost={onTagPost}
+            onBack={onBack}
+            onEdit={onEdit}
+          />
+        ) : (
+          <h2>Loading...</h2>
+        )}
+      </PageTemplate>
+    </>
   );
 };
 

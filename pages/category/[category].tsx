@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
 import { dehydrate, QueryClient } from 'react-query';
 import PageTemplate from '../../components/common/PageTemplate';
 import CategoryPosts from '../../components/posts/CategoryPosts';
@@ -9,14 +10,19 @@ const CategoryPage: NextPage = () => {
   const { posts, onReadPost, onTagPost, category } = useCategoryPosts();
 
   return (
-    <PageTemplate>
-      <CategoryPosts
-        posts={posts}
-        onReadPost={onReadPost}
-        onTagPost={onTagPost}
-        category={category}
-      />
-    </PageTemplate>
+    <>
+      <Head>
+        <title>{category} 카테고리 - D&K Dreams Blog</title>
+      </Head>
+      <PageTemplate right={true}>
+        <CategoryPosts
+          posts={posts}
+          onReadPost={onReadPost}
+          onTagPost={onTagPost}
+          category={category}
+        />
+      </PageTemplate>
+    </>
   );
 };
 
