@@ -134,6 +134,18 @@ const Container = styled.div`
   margin-bottom: 5rem;
   scroll-behavior: auto;
 
+  blockquote {
+    border-left: 4px solid #1b3bf5;
+    font-size: 1.4rem;
+    padding: 0.6rem 0 0.6rem 1.3rem;
+    color: black;
+    margin-left: 0;
+    margin-right: 0;
+    p {
+      margin: 0;
+    }
+  }
+
   p {
     font-size: 1.215rem;
 

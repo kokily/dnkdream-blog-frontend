@@ -55,10 +55,11 @@ const Container = styled.div`
   line-height: 1.6;
   padding-left: 0.5rem;
   margin-bottom: 14rem;
+
   blockquote {
     border-left: 4px solid #1b3bf5;
-    padding: 1rem;
-    background: #a1a1a1;
+    font-size: 1.4rem;
+    padding: 0.6rem 0 0.6rem 1.3rem;
     color: black;
     margin-left: 0;
     margin-right: 0;
@@ -66,6 +67,7 @@ const Container = styled.div`
       margin: 0;
     }
   }
+
   h1 {
     font-size: 2rem;
   }
