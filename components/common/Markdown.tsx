@@ -8,6 +8,7 @@ import 'prismjs/components/prism-javascript.min.js';
 import 'prismjs/components/prism-jsx.min.js';
 import 'prismjs/components/prism-css.min.js';
 import 'prismjs/components/prism-tsx.min.js';
+import { media } from '../../styles';
 
 interface Props {
   markdown: string;
@@ -97,26 +98,14 @@ const Container = styled.div`
       word-spacing: normal;
       word-break: normal;
       overflow-wrap: normal;
-    }
+      padding: 0.25rem;
 
-    span.punctuation {
+      ${media.small} {
+        font-size: 1rem;
+      }
     }
   }
-  p {
-    em {
-      color: #1b3bf5;
-      padding-left: 0.2rem;
-      padding-right: 0.2rem;
-    }
-    strong {
-      color: #1e63c4;
-      border-radius: 6px;
-      padding-left: 0.4rem;
-      padding-right: 0.4rem;
-      margin-left: 0.2rem;
-      margin-right: 0.2rem;
-    }
-  }
+
   a {
     color: #1b3bf5;
     &:hover {
@@ -141,7 +130,7 @@ const Container = styled.div`
   }
   img,
   iframe {
-    max-width: 80%;
+    max-width: 100%;
     margin: 0 auto;
     display: block;
     margin-bottom: 2.3rem;
@@ -149,22 +138,9 @@ const Container = styled.div`
   img {
     border-radius: 4px;
   }
+
   p {
     font-size: 1.2rem;
-  }
-  p {
-    code {
-      background: #2c2c2c;
-      padding: 0.25rem;
-      color: #fff;
-      border: 1px solid #3c3c3c;
-      border-radius: 2px;
-    }
-  }
-
-  p {
-    font-size: 1.215rem;
-
     em {
       color: #fff;
       background: #1fb498;

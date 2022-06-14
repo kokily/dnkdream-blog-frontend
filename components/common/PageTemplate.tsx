@@ -33,7 +33,7 @@ function PageTemplate({ children, left, right, prev, next }: Props) {
               <RightSide prev={prev} next={next} />
             </RightContainer>
           ) : (
-            <RightContainer>{right}</RightContainer>
+            right !== false && <RightContainer>{right}</RightContainer>
           )}
         </Contents>
       </Container>
