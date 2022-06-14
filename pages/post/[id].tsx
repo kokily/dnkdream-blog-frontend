@@ -25,6 +25,14 @@ const ReadPostPage: NextPage = () => {
     <>
       <Head>
         <title>{post?.title} - D&K Dreams Blog</title>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${post?.title}`} />
+        <meta
+          property="og:url"
+          content={`https://dnkdream.com/post/${post?.id}`}
+        />
+        <meta property="og:description" content={`${post?.category}`} />
+        <meta property="og:image" content={`${post?.thumbnail}`} />
       </Head>
       <PageTemplate right={post && <TocTest html={post.body} />}>
         {post ? (

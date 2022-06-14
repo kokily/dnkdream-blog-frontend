@@ -66,6 +66,11 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" href="/assets/logo192.png" />
+        <meta property='og:type' content="website" />
+        <meta property='og:title' content="D&K Dreams Blog" />
+        <meta property='og:url' content="https://dnkdream.com" />
+        <meta property='og:description' content="비개발자의 개발 블로그" />
+        <meta property='og:image' content="/assets/images/logo512.png" />
         <title>D&K Dreams Blog - Welcome</title>
       </Head>
       <Script
