@@ -15,4 +15,9 @@ interface PostType {
   updated_at: Date;
 }
 
+interface TocType {
+  id: string;
+  top: number;
+}
+
 declare module 'quilljs-markdown';

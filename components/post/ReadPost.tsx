@@ -7,6 +7,7 @@ import Markdown from '../common/Markdown';
 import RemoveModal from './RemoveModal';
 import Button from '../common/Button';
 import Comment from '../common/Comment';
+import TocTest from './TocTest';
 
 interface Props {
   user: UserType | null;
@@ -33,6 +34,7 @@ function ReadPost({
 }: Props) {
   return (
     <>
+      <Spacer />
       <Container>
         <Link href={`/category/${post.category}`} passHref>
           <CategoryLink>카테고리 &gt; {post.category}</CategoryLink>
@@ -69,6 +71,10 @@ function ReadPost({
 }
 
 // Styles
+const Spacer = styled.div`
+  display: block;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -77,7 +83,7 @@ const Container = styled.div`
   max-width: 950px;
   border-bottom: 0.2rem outset #38d9a9;
   margin-top: 1.5rem;
-  margin-bottom: 10rem;
+  margin-bottom: 10rem auto 0px;
 
   ${media.medium} {
     margin-bottom: 1.5rem;

@@ -5,6 +5,7 @@ const mediaQuery = (max_width: number) => `
 `;
 
 export const media = {
+  xlarge: mediaQuery(1500),
   large: mediaQuery(1200),
   medium: mediaQuery(992),
   small: mediaQuery(768),

@@ -9,7 +9,7 @@ const IndexPage: NextPage = () => {
   const { posts, onReadPost, onTagPost } = useAllPosts();
 
   return (
-    <PageTemplate next={posts.length > 1 ? posts[1] : undefined}>
+    <PageTemplate next={posts.length > 1 ? posts[1] : undefined} right>
       <AllPosts posts={posts} onReadPost={onReadPost} onTagPost={onTagPost} />
     </PageTemplate>
   );

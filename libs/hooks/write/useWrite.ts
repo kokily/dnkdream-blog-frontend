@@ -10,6 +10,7 @@ import {
 import { toast } from 'react-toastify';
 import useHeader from '../common/useHeader';
 import { imageUpload } from '../../../libs/api/upload';
+import { setHeaderId } from '../../utils/toc';
 
 function useWrite(edit?: boolean) {
   const queryClient = useQueryClient();
@@ -86,7 +87,7 @@ function useWrite(edit?: boolean) {
         addPost({
           category,
           title,
-          body,
+          body: setHeaderId(body),
           thumbnail,
           tags: overlapTags,
         });
@@ -95,7 +96,7 @@ function useWrite(edit?: boolean) {
           id,
           category,
           title,
-          body,
+          body: setHeaderId(body),
           thumbnail,
           tags: overlapTags,
         });
