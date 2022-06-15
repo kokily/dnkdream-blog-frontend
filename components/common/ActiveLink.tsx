@@ -17,7 +17,11 @@ function ActiveLink({ href, activeClassName, children }: Props) {
     className = `${className} ${activeClassName}`.trim();
   }
 
-  return <Link href={href}>{React.cloneElement(child, { className })}</Link>;
+  return (
+    <Link href={href} passHref={true}>
+      {React.cloneElement(child, { className })}
+    </Link>
+  );
 }
 
 export default ActiveLink;

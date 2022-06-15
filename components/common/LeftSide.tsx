@@ -58,7 +58,7 @@ const CategoryItem = styled.div`
     color: #31c598;
   }
 
-  &.active {
+  &:active {
     color: #0c0c0c;
   }
 `;

@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/router';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { listPostsAPI } from '../../api/posts';
 
 function useCategoryPosts() {
   const router = useRouter();
   const { category }: { category?: string } = router.query;
+  const queryClient = useQueryClient();
   const observerRef = useRef<IntersectionObserver>();
   const boxRef = useRef<HTMLDivElement>();
-  const { data, fetchNextPage } = useInfiniteQuery(
-    'tagPosts',
+  const { data, fetchNextPage, refetch } = useInfiniteQuery(
+    'categoryPosts',
     ({ pageParam }) => listPostsAPI({ category, cursor: pageParam }),
     {
       getNextPageParam: (data) =>
@@ -23,7 +24,7 @@ function useCategoryPosts() {
     }
 
     return ([] as PostType[]).concat(...data.pages);
-  }, [data]);
+  }, [data, category]);
 
   const onReadPost = (id: string) => {
     router.push(`/post/${id}`);
@@ -53,6 +54,15 @@ function useCategoryPosts() {
     observerRef.current = new IntersectionObserver(intersectionObserver);
     boxRef.current && observerRef.current.observe(boxRef.current);
   }, [posts]);
+
+  useEffect(() => {
+    async function updatePosts() {
+      await queryClient.invalidateQueries('categoryPosts');
+      await refetch();
+    }
+
+    updatePosts();
+  }, [category]);
 
   return {
     posts,
