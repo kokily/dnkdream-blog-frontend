@@ -130,8 +130,7 @@ const Container = styled.div`
     padding: 0.25rem;
     text-align: left;
   }
-  img,
-  iframe {
+  img {
     max-width: 100%;
     margin: 0 auto;
     display: block;
@@ -158,6 +157,24 @@ const Container = styled.div`
       padding-right: 0.4rem;
       margin-left: 0.2rem;
       margin-right: 0.2rem;
+    }
+  }
+  .ql-video {
+    width: 100%;
+    height: 25.3125vw;
+    margin: 0 auto;
+    display: block;
+
+    ${media.xlarge} {
+      height: 36.5vw;
+    }
+
+    ${media.large} {
+      height: 40vw;
+    }
+
+    ${media.small} {
+      height: 50.5vw;
     }
   }
 `;
