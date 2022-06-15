@@ -161,9 +161,13 @@ const Container = styled.div`
   }
   .ql-video {
     width: 100%;
-    height: 25.3125vw;
+    height: 15.3125vw;
     margin: 0 auto;
     display: block;
+
+    ${media.xxlarge} {
+      height: 25vw;
+    }
 
     ${media.xlarge} {
       height: 36.5vw;
