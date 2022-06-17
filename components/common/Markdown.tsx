@@ -27,14 +27,7 @@ function Markdown({ markdown }: Props) {
       breaks: true,
     });
 
-    let oldBody = markdown;
-    let newFrontBody = oldBody.replaceAll(
-      '<pre class="ql-syntax" spellcheck="false">',
-      '<pre class="ql-syntax" spellcheck="false"><code class="language-jsx">'
-    );
-    let newBody = newFrontBody.replaceAll('</pre>', '</code></pre>');
-
-    setHtml(marked.parse(newBody));
+    setHtml(marked.parse(markdown));
   };
 
   useEffect(() => {
@@ -105,6 +98,10 @@ const Container = styled.div`
       ${media.small} {
         font-size: 1rem;
       }
+    }
+
+    p {
+      margin: 0;
     }
   }
 

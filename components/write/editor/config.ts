@@ -1,5 +1,3 @@
-import QuillMarkdown from 'quilljs-markdown';
-
 export const modules = {
   toolbar: {
     container: [
