@@ -25,6 +25,7 @@ interface CommentType {
   comment_username: string;
   comment_password: string;
   comment_body: string;
+  deleted: boolean;
   created_at: Date;
   updated_at: Date;
   postId: string | null;
@@ -34,6 +35,7 @@ interface CommentType {
 interface ReplyType {
   id: string;
   reply_body: string;
+  deleted: boolean;
   created_at: Date;
   updated_at: Date;
   postId: string | null;

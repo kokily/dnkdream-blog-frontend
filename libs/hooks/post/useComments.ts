@@ -2,12 +2,7 @@ import type { ChangeEvent, MouseEvent } from 'react';
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import {
-  addCommentAPI,
-  listCommentsAPI,
-  removeCommentAPI,
-  updateCommentAPI,
-} from '../../api/comments';
+import { addCommentAPI, listCommentsAPI } from '../../api/comments';
 
 function useComments(postId: string) {
   const queryClient = useQueryClient();
@@ -19,8 +14,6 @@ function useComments(postId: string) {
     }
   );
   const addCommentMutate = useMutation(addCommentAPI);
-  const removeCommentMutate = useMutation(removeCommentAPI);
-  const updateCommentMutate = useMutation(updateCommentAPI);
   const [inputs, setInputs] = useState({
     comment_username: '',
     comment_password: '',
@@ -66,24 +59,6 @@ function useComments(postId: string) {
     }
   };
 
-  const onRemoveComment = async (id: string, password: string) => {
-    try {
-      const removeComment = await removeCommentMutate.mutateAsync({
-        id,
-        password,
-      });
-
-      if (!removeComment) {
-        toast.error('');
-      }
-
-      toast.success('댓글이 삭제되었습니다');
-      await queryClient.invalidateQueries('comments');
-    } catch (err: any) {
-      toast.error(err);
-    }
-  };
-
   return {
     comments,
     comment_username,
@@ -91,7 +66,6 @@ function useComments(postId: string) {
     comment_body,
     onChange,
     onAddComment,
-    onRemoveComment,
   };
 }
 

@@ -87,6 +87,7 @@ const InputGroup = styled.div`
     height: 100%;
     border: 1px solid #c9c4c4;
     border-radius: 4px;
+    padding: 0.3rem;
   }
 `;
 

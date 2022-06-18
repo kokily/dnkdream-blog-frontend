@@ -1,18 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FaCaretDown, FaCaretSquareDown } from 'react-icons/fa';
 import formatDate from '../../libs/utils/formatDate';
 import ListReplies from './ListReplies';
 import Button from '../common/Button';
 import useEditComment from '../../libs/hooks/post/useEditComment';
 import PasswordModal from './PasswordModal';
+import AddReply from './AddReply';
 
 interface Props {
   comment: CommentType;
-  onRemoveComment: (id: string, password: string) => void;
+  user: UserType | null;
 }
 
-function CommentItem({ comment, onRemoveComment }: Props) {
+function CommentItem({ comment, user }: Props) {
   const {
     password,
     onChangePassword,
@@ -26,6 +27,7 @@ function CommentItem({ comment, onRemoveComment }: Props) {
     onConfirm,
     edit,
     onUpdateComment,
+    onRemoveComment,
   } = useEditComment(comment);
 
   return (
@@ -41,10 +43,15 @@ function CommentItem({ comment, onRemoveComment }: Props) {
           </InfoBox>
 
           <div className="right">
-            {edit ? (
-              <Button upload onClick={onUpdateComment}>
-                수정하기
-              </Button>
+            {comment.deleted ? null : edit ? (
+              <span>
+                <Button remove onClick={() => onRemoveComment(comment.id)}>
+                  삭제하기
+                </Button>
+                <Button upload onClick={onUpdateComment}>
+                  수정하기
+                </Button>
+              </span>
             ) : (
               <>
                 {menu ? (
@@ -68,8 +75,10 @@ function CommentItem({ comment, onRemoveComment }: Props) {
           </div>
         </CommentHeader>
 
-        <CommentBody>
-          {edit ? (
+        <CommentBody deleted={comment.deleted}>
+          {comment.deleted ? (
+            '댓글이 삭제되었습니다.'
+          ) : edit ? (
             <UpdateBody name="body" value={body} onChange={onChangeBody} />
           ) : (
             comment.comment_body
@@ -80,6 +89,8 @@ function CommentItem({ comment, onRemoveComment }: Props) {
           <ListReplies replies={comment.replies} />
         )}
       </Contents>
+
+      {user && <AddReply commentId={comment.id} />}
 
       <PasswordModal
         visible={modal}
@@ -118,6 +129,12 @@ const CommentHeader = styled.div`
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    span {
+      button + button {
+        margin-left: 0.5rem;
+      }
+    }
   }
 `;
 
@@ -127,6 +144,7 @@ const Avatar = styled.div`
   align-items: center;
   margin-right: 1.2rem;
   padding: 0;
+  padding-top: 0.3rem;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -154,11 +172,20 @@ const InfoBox = styled.div`
   }
 `;
 
-const CommentBody = styled.pre`
-  padding-left: 4rem;
+const CommentBody = styled.pre<{ deleted?: boolean }>`
+  margin-left: 4rem;
+  padding: 0.5rem;
   word-break: keep-all;
   font-size: 1rem;
   line-height: 1.6;
+  border-radius: 8px;
+
+  ${(props) =>
+    props.deleted &&
+    css`
+      background: #e7e2e2;
+      color: #b8a6a6;
+    `}
 `;
 
 const UpdateBody = styled.textarea`

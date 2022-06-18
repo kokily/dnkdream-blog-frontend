@@ -14,7 +14,7 @@ export async function addReplyAPI(payload: AddReplyPayload) {
 
 // Remove Reply API
 export async function removeReplyAPI(id: string) {
-  const response = await client.patch(`/replies/remove/${id}`);
+  const response = await client.delete(`/replies/${id}`);
   return response.data;
 }
 

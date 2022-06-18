@@ -6,21 +6,17 @@ import CommentItem from './CommentItem';
 interface Props {
   comments: CommentType[];
   postId: string;
-  onRemoveComment: (id: string, password: string) => void;
+  user: UserType | null;
 }
 
-function ListComments({ comments, postId, onRemoveComment }: Props) {
+function ListComments({ comments, postId, user }: Props) {
   return (
     <Container>
       <CountPane>댓글 {comments.length}개</CountPane>
       <AddComment postId={postId} />
       <ListBox>
         {comments.map((comment) => (
-          <CommentItem
-            key={comment.id}
-            comment={comment}
-            onRemoveComment={onRemoveComment}
-          />
+          <CommentItem key={comment.id} comment={comment} user={user} />
         ))}
       </ListBox>
     </Container>

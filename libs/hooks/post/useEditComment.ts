@@ -2,12 +2,17 @@ import type { ChangeEvent, MouseEvent } from 'react';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { confirmPasswordAPI, updateCommentAPI } from '../../api/comments';
+import {
+  confirmPasswordAPI,
+  removeCommentAPI,
+  updateCommentAPI,
+} from '../../api/comments';
 
 function useEditComment(comment: CommentType) {
   const queryClient = useQueryClient();
   const confirmPasswordMutate = useMutation(confirmPasswordAPI);
   const updateCommentMutate = useMutation(updateCommentAPI);
+  const removeCommentMutate = useMutation(removeCommentAPI);
   const [password, setPassword] = useState('');
   const [body, setBody] = useState(comment.comment_body);
   const [menu, toggleMenu] = useState(false);
@@ -88,6 +93,34 @@ function useEditComment(comment: CommentType) {
     }
   };
 
+  const onRemoveComment = async (id: string) => {
+    if (window.confirm('정말 삭제하세요?')) {
+      try {
+        const removeComment = await removeCommentMutate.mutateAsync({
+          id,
+          password,
+        });
+
+        if (!removeComment) {
+          toast.error('댓글 삭제 실패');
+          return;
+        }
+
+        toast.success('댓글 삭제');
+        await queryClient.invalidateQueries('comments');
+        setPassword('');
+        setBody(comment.comment_body);
+        toggleMenu(false);
+        setModal(false);
+        setEdit(false);
+      } catch (err: any) {
+        toast.error(err);
+      }
+    } else {
+      return;
+    }
+  };
+
   return {
     password,
     onChangePassword,
@@ -101,6 +134,7 @@ function useEditComment(comment: CommentType) {
     onConfirm,
     edit,
     onUpdateComment,
+    onRemoveComment,
   };
 }
 
