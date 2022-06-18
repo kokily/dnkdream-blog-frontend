@@ -6,8 +6,8 @@ import PostTitle from './PostTitle';
 import Markdown from '../common/Markdown';
 import RemoveModal from './RemoveModal';
 import Button from '../common/Button';
-import Comment from '../common/Comment';
-import TocTest from './TocTest';
+import ListComments from '../comments/ListComments';
+import useComments from '../../libs/hooks/post/useComments';
 
 interface Props {
   user: UserType | null;
@@ -32,6 +32,8 @@ function ReadPost({
   onCancel,
   onConfirm,
 }: Props) {
+  const { comments, onRemoveComment } = useComments(post.id);
+
   return (
     <>
       <Container>
@@ -62,7 +64,11 @@ function ReadPost({
         )}
       </PostButtons>
 
-      <Comment />
+      <ListComments
+        comments={comments || []}
+        postId={post.id}
+        onRemoveComment={onRemoveComment}
+      />
 
       <RemoveModal visible={modal} onCancel={onCancel} onConfirm={onConfirm} />
     </>

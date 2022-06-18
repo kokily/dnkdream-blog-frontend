@@ -5,7 +5,7 @@ import Button from './Button';
 interface Props {
   visible: boolean;
   title: string;
-  content: string;
+  content: string | React.ReactNode;
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -24,7 +24,7 @@ function Modal({ visible, title, content, onConfirm, onCancel }: Props) {
             취소
           </Button>
           <Button submit onClick={onConfirm}>
-            삭제
+            확인
           </Button>
         </ButtonGroup>
       </Contents>

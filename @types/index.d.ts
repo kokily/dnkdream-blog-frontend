@@ -20,4 +20,24 @@ interface TocType {
   top: number;
 }
 
+interface CommentType {
+  id: string;
+  comment_username: string;
+  comment_password: string;
+  comment_body: string;
+  created_at: Date;
+  updated_at: Date;
+  postId: string | null;
+  replies: ReplyType[];
+}
+
+interface ReplyType {
+  id: string;
+  reply_body: string;
+  created_at: Date;
+  updated_at: Date;
+  postId: string | null;
+  commentId: string | null;
+}
+
 declare module 'quilljs-markdown';

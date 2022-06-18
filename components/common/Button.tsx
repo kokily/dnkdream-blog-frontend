@@ -7,6 +7,7 @@ const Container = styled.button<{
   back?: boolean;
   remove?: boolean;
   upload?: boolean;
+  comment?: boolean;
 }>`
   font-size: 1rem;
   font-weight: bold;
@@ -62,6 +63,17 @@ const Container = styled.button<{
         color: #1fc588;
       }
     `}
+    ${(props) =>
+    props.comment &&
+    css`
+      border: 1px solid #db5225;
+      background: #db5225;
+      color: white;
+      &:hover {
+        background: white;
+        color: #db5225;
+      }
+    `}
 `;
 
 interface Props {
@@ -69,6 +81,7 @@ interface Props {
   back?: boolean;
   remove?: boolean;
   upload?: boolean;
+  comment?: boolean;
   onClick?: any;
   children: React.ReactNode;
 }
