@@ -1,23 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import useComments from '../../libs/hooks/post/useComments';
 import AddComment from './AddComment';
 import CommentItem from './CommentItem';
 
 interface Props {
-  comments: CommentType[];
   postId: string;
   user: UserType | null;
 }
 
-function ListComments({ comments, postId, user }: Props) {
+function ListComments({ postId, user }: Props) {
+  const { comments } = useComments(postId);
+
   return (
     <Container>
-      <CountPane>댓글 {comments.length}개</CountPane>
+      <CountPane>댓글 {comments ? comments.length : 0}개</CountPane>
       <AddComment postId={postId} />
       <ListBox>
-        {comments.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} user={user} />
-        ))}
+        {comments &&
+          comments.map((comment) => (
+            <CommentItem key={comment.id} comment={comment} user={user} />
+          ))}
       </ListBox>
     </Container>
   );

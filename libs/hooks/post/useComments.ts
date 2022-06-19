@@ -1,12 +1,12 @@
 import type { ChangeEvent, MouseEvent } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import { addCommentAPI, listCommentsAPI } from '../../api/comments';
 
 function useComments(postId: string) {
   const queryClient = useQueryClient();
-  const { data: comments } = useQuery(
+  const { data: comments, refetch } = useQuery(
     'comments',
     () => listCommentsAPI(postId),
     {
@@ -58,6 +58,15 @@ function useComments(postId: string) {
       toast.error(err);
     }
   };
+
+  useEffect(() => {
+    async function updateComments() {
+      await queryClient.invalidateQueries('comments');
+      await refetch();
+    }
+
+    updateComments();
+  }, [postId]);
 
   return {
     comments,

@@ -32,8 +32,6 @@ function ReadPost({
   onCancel,
   onConfirm,
 }: Props) {
-  const { comments } = useComments(post.id);
-
   return (
     <>
       <Container>
@@ -64,7 +62,11 @@ function ReadPost({
         )}
       </PostButtons>
 
-      <ListComments comments={comments || []} postId={post.id} user={user} />
+      <ListComments
+        comments={post.comments || []}
+        postId={post.id}
+        user={user}
+      />
 
       <RemoveModal visible={modal} onCancel={onCancel} onConfirm={onConfirm} />
     </>

@@ -9,7 +9,6 @@ function useReadPost() {
   const { id }: { id?: string } = router.query;
   const { data } = useQuery('readPost', () => readPostAPI(id!), {
     enabled: true,
-    staleTime: 1000,
   });
   const { mutate: removePost } = useMutation(removePostAPI);
   const [modal, setModal] = useState(false);
