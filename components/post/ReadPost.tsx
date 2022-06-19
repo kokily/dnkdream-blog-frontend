@@ -62,11 +62,7 @@ function ReadPost({
         )}
       </PostButtons>
 
-      <ListComments
-        comments={post.comments || []}
-        postId={post.id}
-        user={user}
-      />
+      <ListComments postId={post.id} user={user} />
 
       <RemoveModal visible={modal} onCancel={onCancel} onConfirm={onConfirm} />
     </>
