@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { media } from '../../styles';
 import ReplyItem from './ReplyItem';
 
 interface Props {
@@ -24,6 +25,10 @@ const Container = styled.div`
   padding-left: 4.1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+
+  ${media.small} {
+    padding-left: 3rem;
+  }
 `;
 
 export default ListReplies;

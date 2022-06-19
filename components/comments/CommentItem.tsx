@@ -7,6 +7,7 @@ import Button from '../common/Button';
 import useEditComment from '../../libs/hooks/post/useEditComment';
 import PasswordModal from './PasswordModal';
 import AddReply from './AddReply';
+import { media } from '../../styles';
 
 interface Props {
   comment: CommentType;
@@ -44,14 +45,14 @@ function CommentItem({ comment, user }: Props) {
 
           <div className="right">
             {comment.deleted ? null : edit ? (
-              <span>
+              <>
                 <Button remove onClick={() => onRemoveComment(comment.id)}>
                   삭제하기
                 </Button>
                 <Button upload onClick={onUpdateComment}>
                   수정하기
                 </Button>
-              </span>
+              </>
             ) : (
               <>
                 {menu ? (
@@ -120,19 +121,36 @@ const CommentHeader = styled.div`
   position: relative;
   height: 50px;
 
+  ${media.small} {
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   .right {
+    display: flex;
     position: absolute;
     right: 0;
     top: 0;
     height: 100%;
     margin-right: 10px;
-    display: flex;
     align-items: center;
     cursor: pointer;
 
-    span {
-      button + button {
-        margin-left: 0.5rem;
+    ${media.small} {
+      flex-direction: column;
+      position: relative;
+
+      button {
+        margin-bottom: 5px;
+      }
+    }
+
+    button + button {
+      margin-left: 0.5rem;
+
+      ${media.small} {
+        margin: 0;
       }
     }
   }
@@ -180,6 +198,10 @@ const CommentBody = styled.pre<{ deleted?: boolean }>`
   line-height: 1.6;
   border-radius: 8px;
   white-space: normal;
+
+  ${media.small} {
+    margin-left: 0.5rem;
+  }
 
   ${(props) =>
     props.deleted &&

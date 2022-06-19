@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import useReplies from '../../libs/hooks/post/useReplies';
 import formatDate from '../../libs/utils/formatDate';
+import { media } from '../../styles';
 import Button from '../common/Button';
 import RemoveModal from './RemoveModal';
 
@@ -14,7 +15,6 @@ function ReplyItem({ reply }: Props) {
     user,
     body,
     onChange,
-    onAddReply,
     onUpdateReply,
     modal,
     onRemoveClick,
@@ -89,17 +89,35 @@ const ReplyHeader = styled.div`
   display: flex;
   position: relative;
   height: 50px;
+
+  ${media.small} {
+    height: 100%;
+    align-items: center;
+  }
+
   .right {
+    display: flex;
     position: absolute;
     right: 0;
-    top: 0;
+    top: -15px;
     height: 100%;
-    display: flex;
     align-items: center;
     cursor: pointer;
 
+    ${media.small} {
+      flex-direction: column;
+
+      button {
+        margin-bottom: 5px;
+      }
+    }
+
     button + button {
       margin-left: 5px;
+
+      ${media.small} {
+        margin: 0;
+      }
     }
   }
 `;
@@ -142,7 +160,7 @@ const InfoBox = styled.div`
 `;
 
 const ReplyBody = styled.pre<{ deleted?: boolean }>`
-  margin-left: 4rem;
+  margin-left: 1.4rem;
   padding: 0.5rem;
   word-break: keep-all;
   font-size: 1rem;
