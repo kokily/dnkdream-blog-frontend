@@ -13,6 +13,7 @@ interface PostType {
   tags: string[];
   created_at: Date;
   updated_at: Date;
+  comments: CommentType[];
 }
 
 interface TocType {

@@ -18,7 +18,10 @@ function PostCard({ post, onReadPost, onTagPost }: Props) {
         onClick={() => onReadPost(post.id)}
       />
 
-      <h2 onClick={() => onReadPost(post.id)}>{post.title}</h2>
+      <h2 onClick={() => onReadPost(post.id)}>
+        {post.title}{' '}
+        {post.comments.length > 0 && <small>[ {post.comments.length} ]</small>}
+      </h2>
 
       <TagBox>
         {post.tags.map((tag) => (
@@ -55,6 +58,11 @@ const Container = styled.div`
   h2 {
     margin-top: 6px;
     cursor: pointer;
+
+    small {
+      font-size: 0.95rem;
+      color: #2040a9;
+    }
   }
 `;
 

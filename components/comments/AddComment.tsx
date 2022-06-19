@@ -21,7 +21,6 @@ function AddComment({ postId }: Props) {
     <Container>
       <UserInfo>
         <InputGroup>
-          <label htmlFor="username">이름</label>
           <input
             type="text"
             name="comment_username"
@@ -31,7 +30,6 @@ function AddComment({ postId }: Props) {
           />
         </InputGroup>
         <InputGroup style={{ marginLeft: '0.4rem' }}>
-          <label htmlFor="password">비밀번호</label>
           <input
             type="password"
             name="comment_password"
@@ -77,15 +75,6 @@ const InputGroup = styled.div`
 
   ${media.medium} {
     margin: 0;
-  }
-
-  label {
-    margin-right: 0.5rem;
-    padding: 0;
-
-    ${media.medium} {
-      display: none;
-    }
   }
 
   input {
