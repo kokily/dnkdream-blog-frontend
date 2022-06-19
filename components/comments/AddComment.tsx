@@ -30,7 +30,7 @@ function AddComment({ postId }: Props) {
             placeholder="이름"
           />
         </InputGroup>
-        <InputGroup>
+        <InputGroup style={{ marginLeft: '0.4rem' }}>
           <label htmlFor="password">비밀번호</label>
           <input
             type="password"
@@ -70,9 +70,14 @@ const UserInfo = styled.div`
 
 const InputGroup = styled.div`
   display: flex;
+  max-width: 100%;
   height: 36px;
   align-items: center;
   margin-right: 1rem;
+
+  ${media.medium} {
+    margin: 0;
+  }
 
   label {
     margin-right: 0.5rem;
@@ -84,6 +89,7 @@ const InputGroup = styled.div`
   }
 
   input {
+    width: 100%;
     height: 100%;
     border: 1px solid #c9c4c4;
     border-radius: 4px;

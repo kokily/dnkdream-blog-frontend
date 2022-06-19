@@ -179,6 +179,7 @@ const CommentBody = styled.pre<{ deleted?: boolean }>`
   font-size: 1rem;
   line-height: 1.6;
   border-radius: 8px;
+  white-space: normal;
 
   ${(props) =>
     props.deleted &&
