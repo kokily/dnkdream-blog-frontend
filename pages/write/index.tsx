@@ -25,6 +25,7 @@ const WritePage: NextPage = () => {
   return (
     <>
       <Head>
+        <meta name="description" content="포스트 작성" />
         <title>포스트 작성 중 - D&K Dreams Blog</title>
       </Head>
       <PageTemplate left={false} right={false}>

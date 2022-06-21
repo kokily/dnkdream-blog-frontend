@@ -25,6 +25,7 @@ const EditPage: NextPage = () => {
   return (
     <>
       <Head>
+        <meta name="description" content="포스트 수정" />
         <title>포스트 수정 중 - D&K Dreams Blog</title>
       </Head>
       <PageTemplate left={false} right={false}>
