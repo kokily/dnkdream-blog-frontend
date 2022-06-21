@@ -71,6 +71,7 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
         <meta property='og:url' content="https://dnkdream.com" />
         <meta property='og:description' content="비개발자의 개발 블로그" />
         <meta property='og:image' content="/assets/images/logo512.png" />
+        <meta name="naver-site-verification" content="8538c2d2cda20e8aedc196b49ba0f8ccc7b4dde0" />
         <title>D&K Dreams Blog - Welcome</title>
       </Head>
       <Script
