@@ -7,7 +7,6 @@ import Markdown from '../common/Markdown';
 import RemoveModal from './RemoveModal';
 import Button from '../common/Button';
 import ListComments from '../comments/ListComments';
-import useComments from '../../libs/hooks/post/useComments';
 
 interface Props {
   user: UserType | null;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 import formatDate from '../../../libs/utils/formatDate';
 import { media } from '../../../styles';
 
@@ -12,11 +13,9 @@ interface Props {
 function PostCard({ post, onReadPost, onTagPost }: Props) {
   return (
     <Container>
-      <Thumbnail
-        src={post.thumbnail}
-        alt="Thumbnail"
-        onClick={() => onReadPost(post.id)}
-      />
+      <Thumbnail onClick={() => onReadPost(post.id)}>
+        <Image src={post.thumbnail} alt="Thumbnail" width={650} height={450} />
+      </Thumbnail>
 
       <h2 onClick={() => onReadPost(post.id)}>
         {post.title}{' '}
@@ -66,12 +65,15 @@ const Container = styled.div`
   }
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled.div`
   width: 100%;
   height: 450px;
   margin: 0;
   border: none;
-  filter: brightness(95%);
+
+  img {
+    filter: brightness(95%);
+  }
 
   ${media.small} {
     height: auto;

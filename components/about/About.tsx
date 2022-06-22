@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 import { media, shadow } from '../../styles';
 import Info from './Info';
 
@@ -7,7 +8,15 @@ function About() {
   return (
     <Container>
       <Card>
-        <Image src="/assets/images/profile.jpg" alt="developer" />
+        <Profile>
+          <Image
+            src="/assets/images/profile.jpg"
+            alt="develop"
+            width={250}
+            height={250}
+            layout="responsive"
+          />
+        </Profile>
 
         <Info />
       </Card>
@@ -65,7 +74,7 @@ const Card = styled.div`
   }
 `;
 
-const Image = styled.img`
+const Profile = styled.div`
   max-width: 100%;
   display: block;
   width: 8rem;
