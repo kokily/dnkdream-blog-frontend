@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 interface Props {
   thumbnail: string;
@@ -11,8 +12,15 @@ function ThumbnailBox({ thumbnail, onUploadImage }: Props) {
     <Container>
       {thumbnail ? (
         <>
-          <h3>썸네일 ⚑</h3>
-          <ImageBox src={thumbnail} alt="Thumbnail" />
+          <Content>
+            <h3>썸네일 ⚑</h3>
+            <UploadButton onClick={() => onUploadImage(true)}>
+              수정
+            </UploadButton>
+          </Content>
+          <ImageBox>
+            <Image src={thumbnail} alt="Thumbnail" width={650} height={450} />
+          </ImageBox>
         </>
       ) : (
         <UploadButton onClick={() => onUploadImage(true)}>
@@ -33,21 +41,32 @@ const Container = styled.div`
   h3 {
     margin-left: 1rem;
     color: #0e3cc4;
+    margin-right: 1rem;
   }
 `;
 
-const ImageBox = styled.img`
+const Content = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ImageBox = styled.div`
   width: 100%;
   max-width: 650px;
   height: auto;
-  filter: sepia(40%);
   border: 1px solid white;
   border-radius: 4px;
   padding: 5px;
+
+  img {
+    filter: sepia(40%);
+  }
 `;
 
 const UploadButton = styled.span`
   width: 100%;
+  height: 100%;
+  max-width: 200px;
   border: 1px solid #179ecb;
   border-radius: 15px;
   padding: 6px 10px 5px 10px;
@@ -56,6 +75,7 @@ const UploadButton = styled.span`
   cursor: pointer;
   color: #fff;
   transition: 0.2s all;
+  text-align: center;
   &:hover {
     color: #179ecb;
     background-color: #fff;

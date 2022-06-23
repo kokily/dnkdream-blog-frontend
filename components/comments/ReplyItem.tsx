@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Image from 'next/image';
 import useReplies from '../../libs/hooks/post/useReplies';
 import formatDate from '../../libs/utils/formatDate';
 import { media } from '../../styles';
@@ -28,7 +29,12 @@ function ReplyItem({ reply }: Props) {
     <Container>
       <ReplyHeader>
         <Avatar>
-          <img src="/assets/images/profile.jpg" alt="profile" />
+          <Image
+            src="/assets/images/profile.jpg"
+            alt="profile"
+            width={50}
+            height={50}
+          />
         </Avatar>
         <InfoBox>
           <div className="name">관리자</div>
