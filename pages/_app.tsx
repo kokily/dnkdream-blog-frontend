@@ -70,6 +70,10 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
           name="naver-site-verification"
           content="8538c2d2cda20e8aedc196b49ba0f8ccc7b4dde0"
         />
+        <meta
+          name="google-site-verification"
+          content="8tl7dJru1oZk2hSD7Mhr0rpZ2QE68a15_C9Ny8JiBbQ"
+        />
         <title>D&K Dreams Blog - Welcome</title>
       </Head>
       <Script
