@@ -1,14 +1,13 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { listPostsAPI } from '../../api/posts';
+import useObserver from '../common/useObserver';
 
 function useTagPosts() {
   const router = useRouter();
   const { tag }: { tag?: string } = router.query;
   const queryClient = useQueryClient();
-  const observerRef = useRef<IntersectionObserver>();
-  const boxRef = useRef<HTMLDivElement>();
   const { data, fetchNextPage, refetch } = useInfiniteQuery(
     'tagPosts',
     ({ pageParam }) => listPostsAPI({ tag, cursor: pageParam }),
@@ -34,26 +33,11 @@ function useTagPosts() {
     router.push(`/tag/${tag}`);
   };
 
-  const intersectionObserver = (
-    entries: IntersectionObserverEntry[],
-    io: IntersectionObserver
-  ) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        io.unobserve(entry.target);
-        fetchNextPage();
-      }
-    });
+  const onIntersect: IntersectionObserverCallback = ([entry]) => {
+    entry.isIntersecting && fetchNextPage();
   };
 
-  useEffect(() => {
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-    }
-
-    observerRef.current = new IntersectionObserver(intersectionObserver);
-    boxRef.current && observerRef.current.observe(boxRef.current);
-  }, [posts]);
+  const { setTarget } = useObserver({ onIntersect });
 
   useEffect(() => {
     async function updatePosts() {
@@ -69,6 +53,7 @@ function useTagPosts() {
     onReadPost,
     onTagPost,
     tag,
+    setTarget,
   };
 }
 

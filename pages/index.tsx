@@ -7,7 +7,7 @@ import { listPostsAPI } from '../libs/api/posts';
 import useAllPosts from '../libs/hooks/posts/useAllPosts';
 
 const IndexPage: NextPage = () => {
-  const { posts, onReadPost, onTagPost } = useAllPosts();
+  const { posts, onReadPost, onTagPost, setTarget } = useAllPosts();
   const { data, isLoading, error } = useQuery('ssrPosts', () =>
     listPostsAPI({})
   );
@@ -38,7 +38,12 @@ const IndexPage: NextPage = () => {
         <title>어서오세요 - D&K Dreams Blog</title>
       </Head>
       <PageTemplate next={posts.length > 1 ? posts[1] : undefined} right>
-        <AllPosts posts={posts} onReadPost={onReadPost} onTagPost={onTagPost} />
+        <AllPosts
+          posts={posts}
+          onReadPost={onReadPost}
+          onTagPost={onTagPost}
+          setTarget={setTarget}
+        />
       </PageTemplate>
     </>
   );

@@ -1,16 +1,31 @@
-import React from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import PostCard from './common/PostCard';
+import useLocalStorage from 'use-local-storage';
 
 interface Props {
   posts: PostType[];
   onReadPost: (id: string) => void;
   onTagPost: (tag: string) => void;
   category: string | undefined;
+  setTarget: Dispatch<SetStateAction<HTMLElement | null | undefined>>;
 }
 
-function CategoryPosts({ posts, onReadPost, onTagPost, category }: Props) {
+function CategoryPosts({
+  posts,
+  onReadPost,
+  onTagPost,
+  category,
+  setTarget,
+}: Props) {
+  const [scrollY] = useLocalStorage('category_posts_list', 0);
+
+  useEffect(() => {
+    if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
+  }, []);
+
   return (
     <Container>
       <CategoryBox>
@@ -28,6 +43,7 @@ function CategoryPosts({ posts, onReadPost, onTagPost, category }: Props) {
           onTagPost={onTagPost}
         />
       ))}
+      <div ref={setTarget} />
     </Container>
   );
 }

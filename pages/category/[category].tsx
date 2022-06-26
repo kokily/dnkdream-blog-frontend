@@ -10,7 +10,8 @@ import useCategoryPosts from '../../libs/hooks/posts/useCategoryPosts';
 const CategoryPage: NextPage = () => {
   const router = useRouter();
   const { category: id }: { category?: string } = router.query;
-  const { posts, onReadPost, onTagPost, category } = useCategoryPosts();
+  const { posts, onReadPost, onTagPost, category, setTarget } =
+    useCategoryPosts();
   const { data, isLoading, error } = useQuery('ssrCategoryPosts', () =>
     listPostsAPI({ category: id })
   );
@@ -49,6 +50,7 @@ const CategoryPage: NextPage = () => {
           onReadPost={onReadPost}
           onTagPost={onTagPost}
           category={category}
+          setTarget={setTarget}
         />
       </PageTemplate>
     </>

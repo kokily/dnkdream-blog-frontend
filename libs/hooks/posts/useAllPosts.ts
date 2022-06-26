@@ -2,11 +2,10 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useInfiniteQuery } from 'react-query';
 import { listPostsAPI } from '../../api/posts';
+import useObserver from '../common/useObserver';
 
 function useAllPosts() {
   const router = useRouter();
-  const observerRef = useRef<IntersectionObserver>();
-  const boxRef = useRef<HTMLDivElement>();
   const { data, fetchNextPage } = useInfiniteQuery(
     'posts',
     ({ pageParam }) => listPostsAPI({ cursor: pageParam }),
@@ -48,20 +47,17 @@ function useAllPosts() {
     });
   };
 
-  useEffect(() => {
-    if (observerRef.current) {
-      // 기존 IO가 있을 경우 연결 해제
-      observerRef.current.disconnect();
-    }
+  const onIntersect: IntersectionObserverCallback = ([entry]) => {
+    entry.isIntersecting && fetchNextPage();
+  };
 
-    observerRef.current = new IntersectionObserver(intersectionObserver);
-    boxRef.current && observerRef.current.observe(boxRef.current);
-  }, [posts]);
+  const { setTarget } = useObserver({ onIntersect });
 
   return {
     posts,
     onReadPost,
     onTagPost,
+    setTarget,
   };
 }
 

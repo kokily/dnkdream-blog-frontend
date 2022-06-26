@@ -10,10 +10,8 @@ import useTagPosts from '../../libs/hooks/posts/useTagPosts';
 const TagPostsPage: NextPage = () => {
   const router = useRouter();
   const { tag: id }: { tag?: string } = router.query;
-  const { posts, onReadPost, onTagPost, tag } = useTagPosts();
-  const { data, isLoading, error } = useQuery('ssrTagsPosts', () =>
-    listPostsAPI({ tag: id })
-  );
+  const { posts, onReadPost, onTagPost, tag, setTarget } = useTagPosts();
+  const { data } = useQuery('ssrTagsPosts', () => listPostsAPI({ tag: id }));
   const tags = data?.map((post) => {
     return post.tags.join();
   });
@@ -43,6 +41,7 @@ const TagPostsPage: NextPage = () => {
           onReadPost={onReadPost}
           onTagPost={onTagPost}
           tag={tag}
+          setTarget={setTarget}
         />
       </PageTemplate>
     </>
