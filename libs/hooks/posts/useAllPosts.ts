@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useInfiniteQuery } from 'react-query';
 import { listPostsAPI } from '../../api/posts';
 import useObserver from '../common/useObserver';
+import useLocalStorage from 'use-local-storage';
 
 function useAllPosts() {
   const router = useRouter();
+  const [scrollY, setScrollY] = useLocalStorage('all_list_posts', 0);
   const { data, fetchNextPage } = useInfiniteQuery(
     'posts',
     ({ pageParam }) => listPostsAPI({ cursor: pageParam }),
@@ -25,26 +27,12 @@ function useAllPosts() {
   }, [data]);
 
   const onReadPost = (id: string) => {
+    setScrollY(window.scrollY);
     router.push(`/post/${id}`);
   };
 
   const onTagPost = (tag: string) => {
-    console.log(tag);
     router.push(`/tag/${tag}`);
-  };
-
-  const intersectionObserver = (
-    entires: IntersectionObserverEntry[],
-    io: IntersectionObserver
-  ) => {
-    entires.forEach((entry) => {
-      // 관찰 주인 entry가 화면에 보일 경우
-      if (entry.isIntersecting) {
-        // entry 관찰 해제 후 다음 데이터 요청
-        io.unobserve(entry.target);
-        fetchNextPage();
-      }
-    });
   };
 
   const onIntersect: IntersectionObserverCallback = ([entry]) => {
@@ -52,6 +40,10 @@ function useAllPosts() {
   };
 
   const { setTarget } = useObserver({ onIntersect });
+
+  useEffect(() => {
+    if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
+  }, []);
 
   return {
     posts,

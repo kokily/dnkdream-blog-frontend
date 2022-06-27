@@ -1,9 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import PostCard from './common/PostCard';
-import useLocalStorage from 'use-local-storage';
 
 interface Props {
   posts: PostType[];
@@ -20,12 +19,6 @@ function CategoryPosts({
   category,
   setTarget,
 }: Props) {
-  const [scrollY] = useLocalStorage('category_posts_list', 0);
-
-  useEffect(() => {
-    if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
-  }, []);
-
   return (
     <Container>
       <CategoryBox>

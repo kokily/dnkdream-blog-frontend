@@ -1,8 +1,7 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import useLocalStorage from 'use-local-storage';
 import PostCard from './common/PostCard';
 
 interface Props {
@@ -14,15 +13,6 @@ interface Props {
 }
 
 function AllPosts({ posts, onReadPost, onTagPost, tag, setTarget }: Props) {
-  const [scrollY] = useLocalStorage(
-    tag ? 'all_posts_list' : 'tag_posts_list',
-    0
-  );
-
-  useEffect(() => {
-    if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
-  }, []);
-
   return (
     <Container>
       {tag && (

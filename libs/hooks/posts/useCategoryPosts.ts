@@ -1,12 +1,14 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useInfiniteQuery, useQueryClient } from 'react-query';
+import useLocalStorage from 'use-local-storage';
 import { listPostsAPI } from '../../api/posts';
 import useObserver from '../common/useObserver';
 
 function useCategoryPosts() {
   const router = useRouter();
   const { category }: { category?: string } = router.query;
+  const [scrollY, setScrollY] = useLocalStorage('category_posts_list', 0);
   const queryClient = useQueryClient();
   const { data, fetchNextPage, refetch } = useInfiniteQuery(
     'categoryPosts',
@@ -26,6 +28,7 @@ function useCategoryPosts() {
   }, [data, category]);
 
   const onReadPost = (id: string) => {
+    setScrollY(window.scrollY);
     router.push(`/post/${id}`);
   };
 
@@ -38,6 +41,10 @@ function useCategoryPosts() {
   };
 
   const { setTarget } = useObserver({ onIntersect });
+
+  useEffect(() => {
+    if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
+  }, []);
 
   useEffect(() => {
     async function updatePosts() {

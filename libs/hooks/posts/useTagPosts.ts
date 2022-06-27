@@ -3,10 +3,12 @@ import { useRouter } from 'next/router';
 import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { listPostsAPI } from '../../api/posts';
 import useObserver from '../common/useObserver';
+import useLocalStorage from 'use-local-storage';
 
 function useTagPosts() {
   const router = useRouter();
   const { tag }: { tag?: string } = router.query;
+  const [scrollY, setScrollY] = useLocalStorage('tag_posts_list', 0);
   const queryClient = useQueryClient();
   const { data, fetchNextPage, refetch } = useInfiniteQuery(
     'tagPosts',
@@ -26,6 +28,7 @@ function useTagPosts() {
   }, [data, tag]);
 
   const onReadPost = (id: string) => {
+    setScrollY(window.scrollY);
     router.push(`/post/${id}`);
   };
 
@@ -47,6 +50,10 @@ function useTagPosts() {
 
     updatePosts();
   }, [tag]);
+
+  useEffect(() => {
+    if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
+  }, []);
 
   return {
     posts,
