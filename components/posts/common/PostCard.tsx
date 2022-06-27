@@ -14,7 +14,7 @@ function PostCard({ post, onReadPost, onTagPost }: Props) {
   return (
     <Container>
       <Thumbnail onClick={() => onReadPost(post.id)}>
-        <Image src={post.thumbnail} alt="Thumbnail" width={650} height={450} />
+        <Image src={post.thumbnail} alt="Thumbnail" width={650} height={360} />
       </Thumbnail>
 
       <h2 onClick={() => onReadPost(post.id)}>
@@ -67,7 +67,7 @@ const Container = styled.div`
 
 const Thumbnail = styled.div`
   width: 100%;
-  height: 450px;
+  height: 360px;
   margin: 0;
   border: none;
 

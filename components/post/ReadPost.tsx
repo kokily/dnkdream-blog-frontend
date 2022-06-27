@@ -33,13 +33,13 @@ function ReadPost({
 }: Props) {
   return (
     <>
-      <Container>
+      <Contents>
         <Link href={`/category/${post.category}`} passHref>
           <CategoryLink>카테고리 &gt; {post.category}</CategoryLink>
         </Link>
 
         <PostTitle post={post} onTagPost={onTagPost} />
-      </Container>
+      </Contents>
 
       <PostContent>
         <Markdown markdown={post.body} />
@@ -69,7 +69,7 @@ function ReadPost({
 }
 
 // Styles
-const Container = styled.div`
+const Contents = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

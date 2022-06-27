@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
 import formatDate from '../../libs/utils/formatDate';
 import { media, shadow } from '../../styles';
 
@@ -24,7 +23,7 @@ function PostTitle({ post, onTagPost }: Props) {
       </TagBox>
 
       <ThumbnailBox>
-        <Image src={post.thumbnail} alt="썸네일" width={650} height={450} />
+        <img src={post.thumbnail} alt="썸네일" />
       </ThumbnailBox>
     </Container>
   );
