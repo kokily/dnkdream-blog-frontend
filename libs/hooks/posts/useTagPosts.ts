@@ -10,12 +10,13 @@ function useTagPosts() {
   const { tag }: { tag?: string } = router.query;
   const [scrollY, setScrollY] = useLocalStorage('tag_posts_list', 0);
   const queryClient = useQueryClient();
-  const { data, fetchNextPage, refetch } = useInfiniteQuery(
+  const { data, fetchNextPage } = useInfiniteQuery(
     'tagPosts',
     ({ pageParam }) => listPostsAPI({ tag, cursor: pageParam }),
     {
       getNextPageParam: (data) =>
         data && data.length === 20 ? data[data.length - 1].id : undefined,
+      enabled: true,
     }
   );
 
@@ -44,8 +45,7 @@ function useTagPosts() {
 
   useEffect(() => {
     async function updatePosts() {
-      await queryClient.invalidateQueries('tagPosts');
-      await refetch();
+      await queryClient.clear();
     }
 
     updatePosts();

@@ -10,12 +10,13 @@ function useCategoryPosts() {
   const { category }: { category?: string } = router.query;
   const [scrollY, setScrollY] = useLocalStorage('category_posts_list', 0);
   const queryClient = useQueryClient();
-  const { data, fetchNextPage, refetch } = useInfiniteQuery(
+  const { data, fetchNextPage } = useInfiniteQuery(
     'categoryPosts',
     ({ pageParam }) => listPostsAPI({ category, cursor: pageParam }),
     {
       getNextPageParam: (data) =>
         data && data.length === 20 ? data[data.length - 1].id : undefined,
+      enabled: true,
     }
   );
 
@@ -48,8 +49,7 @@ function useCategoryPosts() {
 
   useEffect(() => {
     async function updatePosts() {
-      await queryClient.invalidateQueries('categoryPosts');
-      await refetch();
+      await queryClient.clear();
     }
 
     updatePosts();
