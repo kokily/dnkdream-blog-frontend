@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { readPostAPI, removePostAPI } from '../../api/posts';
+import shareUrl from '../../utils/shareUrl';
 
 function useReadPost() {
   const router = useRouter();
@@ -35,6 +36,11 @@ function useReadPost() {
     router.push(`/tag/${tag}`);
   };
 
+  const onSharePost = () => {
+    shareUrl(`https://dnkdream.com/post/${router.query.id}`);
+    toast.success('링크가 복사되었습니다');
+  };
+
   const onRemoveClick = () => {
     setModal(true);
   };
@@ -55,6 +61,7 @@ function useReadPost() {
     onBack,
     onEdit,
     onTagPost,
+    onSharePost,
     modal,
     onRemoveClick,
     onCancel,

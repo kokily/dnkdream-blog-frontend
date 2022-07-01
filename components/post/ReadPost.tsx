@@ -14,6 +14,7 @@ interface Props {
   onBack: () => void;
   onEdit: () => void;
   onTagPost: (tag: string) => void;
+  onSharePost: () => void;
   modal: boolean;
   onRemoveClick: () => void;
   onCancel: () => void;
@@ -26,6 +27,7 @@ function ReadPost({
   onBack,
   onEdit,
   onTagPost,
+  onSharePost,
   modal,
   onRemoveClick,
   onCancel,
@@ -38,7 +40,11 @@ function ReadPost({
           <CategoryLink>카테고리 &gt; {post.category}</CategoryLink>
         </Link>
 
-        <PostTitle post={post} onTagPost={onTagPost} />
+        <PostTitle
+          post={post}
+          onTagPost={onTagPost}
+          onSharePost={onSharePost}
+        />
       </Contents>
 
       <PostContent>

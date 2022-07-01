@@ -6,7 +6,7 @@ interface Props {
   html: string;
 }
 
-function TocTest({ html }: Props) {
+function PostToc({ html }: Props) {
   const { tocs, activeId } = useToc(html);
 
   return (
@@ -74,4 +74,4 @@ const TocItem = styled.div<{ active: boolean }>`
   }
 `;
 
-export default TocTest;
+export default PostToc;

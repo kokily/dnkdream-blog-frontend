@@ -1,18 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { RiShareForwardBoxFill } from 'react-icons/ri';
 import formatDate from '../../libs/utils/formatDate';
 import { media, shadow } from '../../styles';
 
 interface Props {
   post: PostType;
   onTagPost: (tag: string) => void;
+  onSharePost: () => void;
 }
 
-function PostTitle({ post, onTagPost }: Props) {
+function PostTitle({ post, onTagPost, onSharePost }: Props) {
   return (
     <Container>
       <Title>{post.title}</Title>
-      <p>{formatDate(post.created_at.toString())} 작성</p>
+      <SubTitle>
+        <p>{formatDate(post.created_at.toString())} 작성</p>
+        <Share onClick={onSharePost}>
+          <RiShareForwardBoxFill size={18} color={'#208774'} />
+        </Share>
+      </SubTitle>
 
       <TagBox>
         {post.tags.map((tag, i) => (
@@ -35,11 +42,6 @@ const Container = styled.div`
   flex-direction: column;
   padding-bottom: 2.1rem;
 
-  p {
-    font-weight: bold;
-    color: #8c8585;
-  }
-
   ${media.medium} {
     padding-right: 0.5rem;
   }
@@ -50,6 +52,36 @@ const Title = styled.h1`
   color: #5c7cfa;
   ${media.medium} {
     font-size: 2.5rem;
+  }
+`;
+
+const SubTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    font-weight: bold;
+    color: #8c8585;
+  }
+`;
+
+const Share = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1.2px solid #208774;
+  border-radius: 50%;
+  height: 100%;
+  padding: 5px;
+  transition: 0.12s all;
+  cursor: pointer;
+
+  &:hover {
+    border: 1.2px solid #dfdfdf;
+  }
+
+  &:active {
+    transform: translateY(2px);
   }
 `;
 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import PageTemplate from '../../components/common/PageTemplate';
 import ReadPost from '../../components/post/ReadPost';
-import TocTest from '../../components/post/TocTest';
+import PostToc from '../../components/post/PostToc';
 import { readPostAPI } from '../../libs/api/posts';
 import { useUserState } from '../../libs/context/UserContext';
 import useReadPost from '../../libs/hooks/post/useReadPost';
@@ -18,6 +18,7 @@ const ReadPostPage: NextPage = () => {
     onBack,
     onEdit,
     onTagPost,
+    onSharePost,
     modal,
     onRemoveClick,
     onCancel,
@@ -51,7 +52,7 @@ const ReadPostPage: NextPage = () => {
         <meta name="description" content={description} />
         <title>{data?.post?.title} - D&K Dreams Blog</title>
       </Head>
-      <PageTemplate right={post && <TocTest html={post.body} />}>
+      <PageTemplate right={post && <PostToc html={post.body} />}>
         {post ? (
           <ReadPost
             user={user}
@@ -61,6 +62,7 @@ const ReadPostPage: NextPage = () => {
             onCancel={onCancel}
             onConfirm={onConfirm}
             onTagPost={onTagPost}
+            onSharePost={onSharePost}
             onBack={onBack}
             onEdit={onEdit}
           />

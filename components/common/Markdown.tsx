@@ -78,7 +78,7 @@ const Container = styled.div`
   h3,
   h4 {
     font-weight: bold;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     color: #4056b9;
   }
   pre {
