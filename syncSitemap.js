@@ -9,7 +9,7 @@ const formatting = (target) =>
     parser: 'html',
   });
 
-const routes = ['/', '/about', '/admin', '/category', '/tag', 'post'];
+const routes = ['/', '/about', '/admin', '/category', '/tag', '/post'];
 
 const pages = routes.map((page) => HOME_DOMAIN + page);
 
