@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import PageTemplate from '../../components/common/PageTemplate';
+import RightSide from '../../components/common/RightSide';
 import CategoryPosts from '../../components/posts/CategoryPosts';
 import { listPostsAPI } from '../../libs/api/posts';
 import useCategoryPosts from '../../libs/hooks/posts/useCategoryPosts';
@@ -44,7 +45,7 @@ const CategoryPage: NextPage = () => {
         <meta name="description" content={description?.toString()} />
         <title>{category} 카테고리 - D&K Dreams Blog</title>
       </Head>
-      <PageTemplate right>
+      <PageTemplate right={<RightSide />}>
         <CategoryPosts
           posts={posts}
           onReadPost={onReadPost}

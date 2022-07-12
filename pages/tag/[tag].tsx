@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import PageTemplate from '../../components/common/PageTemplate';
+import RightSide from '../../components/common/RightSide';
 import AllPosts from '../../components/posts/AllPosts';
 import { listPostsAPI } from '../../libs/api/posts';
 import useTagPosts from '../../libs/hooks/posts/useTagPosts';
@@ -35,7 +36,7 @@ const TagPostsPage: NextPage = () => {
         <meta name="description" content={description?.toString()} />
         <title>{tag} 태그 선택 - D&K Dreams Blog</title>
       </Head>
-      <PageTemplate right>
+      <PageTemplate right={<RightSide />}>
         <AllPosts
           posts={posts}
           onReadPost={onReadPost}
