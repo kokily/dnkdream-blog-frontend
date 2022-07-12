@@ -8,12 +8,10 @@ import RightSide from './RightSide';
 interface Props {
   children: React.ReactNode;
   left?: boolean;
-  right?: true | React.ReactNode;
-  prev?: PostType;
-  next?: PostType;
+  right?: React.ReactNode;
 }
 
-function PageTemplate({ children, left, right, prev, next }: Props) {
+function PageTemplate({ children, left, right }: Props) {
   return (
     <div style={{ height: '100%' }}>
       <Header />
@@ -28,13 +26,7 @@ function PageTemplate({ children, left, right, prev, next }: Props) {
 
           <Main>{children}</Main>
 
-          {right === true ? (
-            <RightContainer>
-              <RightSide prev={prev} next={next} />
-            </RightContainer>
-          ) : (
-            right !== false && <RightContainer>{right}</RightContainer>
-          )}
+          {right && <RightContainer>{right}</RightContainer>}
         </Contents>
       </Container>
     </div>

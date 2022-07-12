@@ -1,19 +1,12 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import PostCard from './right/PostCard';
+import { media } from '../../styles';
+import useListTags from '../../libs/hooks/tags/useListTags';
 
-interface Props {
-  prev?: PostType;
-  next?: PostType;
-}
-
-function RightSide({ prev, next }: Props) {
+function RightSide() {
   const router = useRouter();
-
-  const onReadPost = (id: string) => {
-    router.push(`/post/${id}`);
-  };
+  const { tags } = useListTags();
 
   const onTagPost = (tag: string) => {
     router.push(`/tag/${tag}`);
@@ -21,21 +14,15 @@ function RightSide({ prev, next }: Props) {
 
   return (
     <Container>
-      <Title>다른 글</Title>
+      <Title>태그 목록</Title>
 
-      <PostTitle className="prev">이전 글</PostTitle>
-      {prev ? (
-        <PostCard post={prev} onReadPost={onReadPost} onTagPost={onTagPost} />
-      ) : (
-        <span>이전 글이 없습니다.</span>
-      )}
-
-      <PostTitle className="next">다음 글</PostTitle>
-      {next ? (
-        <PostCard post={next} onReadPost={onReadPost} onTagPost={onTagPost} />
-      ) : (
-        <span>다음 글이 없습니다.</span>
-      )}
+      <TagBox>
+        {tags?.map((tag) => (
+          <span key={tag} className="tag" onClick={() => onTagPost(tag)}>
+            #{tag}
+          </span>
+        ))}
+      </TagBox>
     </Container>
   );
 }
@@ -51,26 +38,35 @@ const Container = styled.div`
   padding-right: 0.5rem;
   position: fixed;
   top: 56px;
-
-  span {
-    width: 100%;
-    text-align: center;
-  }
 `;
 
 const Title = styled.h2`
   color: #303030;
 `;
 
-const PostTitle = styled.h3`
-  margin-top: 2rem;
+const TagBox = styled.div`
+  display: inline;
 
-  &.prev {
-    color: #c4643d;
-  }
+  .tag {
+    display: inline-block;
+    border: 1px solid #408ac3;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    background: #408ac3;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s all;
+    margin-right: 4px;
+    &:hover {
+      color: #408ac3;
+      background-color: #fff;
+    }
 
-  &.next {
-    color: #1942ca;
+    ${media.small} {
+      margin-left: 0;
+    }
   }
 `;
 

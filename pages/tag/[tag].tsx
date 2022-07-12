@@ -35,7 +35,7 @@ const TagPostsPage: NextPage = () => {
         <meta name="description" content={description?.toString()} />
         <title>{tag} 태그 선택 - D&K Dreams Blog</title>
       </Head>
-      <PageTemplate right={true}>
+      <PageTemplate right>
         <AllPosts
           posts={posts}
           onReadPost={onReadPost}

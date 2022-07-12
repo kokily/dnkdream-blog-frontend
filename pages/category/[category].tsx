@@ -44,7 +44,7 @@ const CategoryPage: NextPage = () => {
         <meta name="description" content={description?.toString()} />
         <title>{category} 카테고리 - D&K Dreams Blog</title>
       </Head>
-      <PageTemplate right={true}>
+      <PageTemplate right>
         <CategoryPosts
           posts={posts}
           onReadPost={onReadPost}

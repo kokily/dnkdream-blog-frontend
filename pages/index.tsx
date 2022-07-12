@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import PageTemplate from '../components/common/PageTemplate';
+import RightSide from '../components/common/RightSide';
 import AllPosts from '../components/posts/AllPosts';
 import { listPostsAPI } from '../libs/api/posts';
 import useAllPosts from '../libs/hooks/posts/useAllPosts';
@@ -11,9 +12,6 @@ const IndexPage: NextPage = () => {
   const { data, isLoading, error } = useQuery('ssrPosts', () =>
     listPostsAPI({})
   );
-  const tags = data?.map((post) => {
-    return post.tags.join();
-  });
   const description = data?.map((post) => {
     return post.title;
   });
@@ -33,11 +31,11 @@ const IndexPage: NextPage = () => {
           property="og:image"
           content="https://image.dnkdream.com/logo512.png"
         />
-        <meta name="keywords" content={tags?.toString()} />
+        <meta name="keywords" content={''} />
         <meta name="description" content={description?.toString()} />
         <title>어서오세요 - D&K Dreams Blog</title>
       </Head>
-      <PageTemplate next={posts.length > 1 ? posts[1] : undefined} right>
+      <PageTemplate right={<RightSide />}>
         <AllPosts
           posts={posts}
           onReadPost={onReadPost}
