@@ -110,7 +110,7 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
         </QueryClientProvider>
       </UserContextProvider>
 
-      <ToastContainer position="bottom-center" draggable={false} />
+      <ToastContainer position="top-right" draggable={false} />
     </>
   );
 };

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { media } from '../../styles';
 import Header from './Header';
 import LeftSide from './LeftSide';
-import RightSide from './RightSide';
 
 interface Props {
   children: React.ReactNode;
