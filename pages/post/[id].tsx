@@ -39,7 +39,10 @@ const ReadPostPage: NextPage = () => {
   return (
     <>
       <Head>
-        <link rel="canonical" href="https://dnkdream.com/post" />
+        <link
+          rel="canonical"
+          href={`https://dnkdream.com/post/${data?.post?.id}`}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${data?.post?.title}`} />
         <meta
