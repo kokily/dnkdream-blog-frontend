@@ -56,10 +56,10 @@ const ReadPostPage: NextPage = () => {
         <title>{data?.post?.title} - D&K Dreams Blog</title>
       </Head>
       <PageTemplate right={post && <PostToc html={post.body} />}>
-        {post ? (
+        {data && data.post && (
           <ReadPost
             user={user}
-            post={post}
+            post={data.post}
             modal={modal}
             onRemoveClick={onRemoveClick}
             onCancel={onCancel}
@@ -69,8 +69,6 @@ const ReadPostPage: NextPage = () => {
             onBack={onBack}
             onEdit={onEdit}
           />
-        ) : (
-          <h2>Loading...</h2>
         )}
       </PageTemplate>
     </>

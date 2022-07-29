@@ -36,12 +36,14 @@ const IndexPage: NextPage = () => {
         <title>어서오세요 - D&K Dreams Blog</title>
       </Head>
       <PageTemplate right={<RightSide />}>
-        <AllPosts
-          posts={posts}
-          onReadPost={onReadPost}
-          onTagPost={onTagPost}
-          setTarget={setTarget}
-        />
+        {data && (
+          <AllPosts
+            posts={data}
+            onReadPost={onReadPost}
+            onTagPost={onTagPost}
+            setTarget={setTarget}
+          />
+        )}
       </PageTemplate>
     </>
   );

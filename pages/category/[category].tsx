@@ -46,13 +46,15 @@ const CategoryPage: NextPage = () => {
         <title>{category} 카테고리 - D&K Dreams Blog</title>
       </Head>
       <PageTemplate right={<RightSide />}>
-        <CategoryPosts
-          posts={posts}
-          onReadPost={onReadPost}
-          onTagPost={onTagPost}
-          category={category}
-          setTarget={setTarget}
-        />
+        {data && (
+          <CategoryPosts
+            posts={data}
+            onReadPost={onReadPost}
+            onTagPost={onTagPost}
+            category={category}
+            setTarget={setTarget}
+          />
+        )}
       </PageTemplate>
     </>
   );

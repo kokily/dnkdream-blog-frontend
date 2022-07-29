@@ -37,13 +37,15 @@ const TagPostsPage: NextPage = () => {
         <title>{tag} 태그 선택 - D&K Dreams Blog</title>
       </Head>
       <PageTemplate right={<RightSide />}>
-        <AllPosts
-          posts={posts}
-          onReadPost={onReadPost}
-          onTagPost={onTagPost}
-          tag={tag}
-          setTarget={setTarget}
-        />
+        {data && (
+          <AllPosts
+            posts={data}
+            onReadPost={onReadPost}
+            onTagPost={onTagPost}
+            tag={tag}
+            setTarget={setTarget}
+          />
+        )}
       </PageTemplate>
     </>
   );
